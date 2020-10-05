@@ -24,12 +24,11 @@ class CourseCard extends React.Component {
                     {
                         this.state.editing && <input/>
                     }
-
                 </div>
 
                 <div className="card-body">
                     <div className="row">
-                        <button className="btn btn-light mr-1" onClick={() => this.props.deleteCourse(this.props.course)}>
+                        <button className="btn btn-light" onClick={() => this.props.deleteCourse(this.props.course)}>
                             <svg className="bi bi-trash-fill wbdv-row wbdv-button wbdv-delete"
                                  fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
                                  xmlns="http://www.w3.org/2000/svg">

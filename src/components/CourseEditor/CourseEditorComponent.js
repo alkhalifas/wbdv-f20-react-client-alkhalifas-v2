@@ -6,10 +6,13 @@ import TopicPills from "./TopicPills";
 const CourseEditorComponent = ({hideEditor}) =>
 
     <div>
-        <button className="btn btn-light" onClick={hideEditor}>Return</button>
-        <h3>Course Editor</h3>
+        <div className="row">
+            <button className="btn btn-light mr-2" onClick={hideEditor}>Return</button>
+            <h3>Course Editor</h3>
+
+        </div>
             <div className="row">
-                <div className="col-4">
+                <div className="col-4 list-group">
                     <ModuleListComponent
                         modules={[
                             {_id: "123", title: "CSS"},
@@ -26,9 +29,6 @@ const CourseEditorComponent = ({hideEditor}) =>
                     <TopicPills/>
                 </div>
             </div>
-
-
-
     </div>
 
 

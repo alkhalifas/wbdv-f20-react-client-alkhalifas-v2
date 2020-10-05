@@ -2,7 +2,8 @@ import React from "react"
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor syntax
+import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor
+                                                                                     // syntax
 
 class CourseManagerComponent extends React.Component {
     //Utilizing class instead of function because we need to maintain state
@@ -10,7 +11,7 @@ class CourseManagerComponent extends React.Component {
     state = {
         layout: 'table',
         showEditor: false,
-        newCourseTitle : 'Whatever',
+        newCourseTitle: '',
         courses: []
     };
 
@@ -25,11 +26,10 @@ class CourseManagerComponent extends React.Component {
     // easier to read, more natural
     componentDidMount = async () => {
         const courses = await findAllCourses()
-            this.setState({
-                courses: courses
-         })
+        this.setState({
+                          courses: courses
+                      })
     }
-
 
     toggle = () =>
         this.setState(prevState => {
@@ -72,7 +72,6 @@ class CourseManagerComponent extends React.Component {
                 })
             })
 
-
     // Adds a course only locally to the cached array
     // addCourse = () =>
     //     this.setState(prevState => {
@@ -89,50 +88,50 @@ class CourseManagerComponent extends React.Component {
     //     });
 
     addCourse = () =>
-        createCourse( {
-                          title: this.state.newCourseTitle
-                      }).then(actualCourse => this.setState(prevState => {
-            return ({
-                courses: [
-                    ...prevState.courses,
-                    actualCourse
-                ] //spread operator that combines old array with new one
+        createCourse({
+                         title: this.state.newCourseTitle
+                     }).then(actualCourse => this.setState(prevState => {
+                                 return ({
+                                     courses: [
+                                         ...prevState.courses,
+                                         actualCourse
+                                     ] //spread operator that combines old array with new one
 
-            })
-        })
+                                 })
+                             })
         )
 
-
-
-    showEditor= () =>
+    showEditor = () =>
         this.setState({
-            showEditor:true
+                          showEditor: true
                       })
 
-    hideEditor= () =>
+    hideEditor = () =>
         this.setState({
-                          showEditor:false
+                          showEditor: false
                       })
 
-    updateForm = (newState) =>{
+    updateForm = (newState) => {
         this.setState(newState)
     }
 
     render() {
         return (
-            <div className = "container">
+            <div className="container">
                 <div className="row">
                     <div className="col-4">
                         <h1>Course Manager</h1>
                     </div>
 
                     <div className="col-6 align-middle mt-2">
-                        <input style={{width: "80%"}}  className="flex-fill  flex-column"
-                            onChange={(e) =>
-                                this.updateForm({
-                                                    newCourseTitle: e.target.value
-                                                })} //raw event handler
-                            value={this.state.newCourseTitle}/>
+                        <input style={{width: "80%"}}
+                               className="flex-fill  flex-column"
+                               placeholder="Enter New Course Here"
+                               onChange={(e) =>
+                                   this.updateForm({
+                                                       newCourseTitle: e.target.value
+                                                   })} //raw event handler
+                               value={this.state.newCourseTitle}/>
                         <button className="btn" onClick={this.addCourse}>
                             <i aria-hidden="true"
                                className="fa fa-plus-circle pull-right fa-2x wbdv-add-course wbdv-add-course-button-white d-block"></i>
@@ -140,7 +139,8 @@ class CourseManagerComponent extends React.Component {
                     </div>
 
                     <div className="col-2 mt-2">
-                        <button className="btn btn-light pull-right" onClick={this.toggle}> Toggle</button>
+                        <button className="btn btn-light pull-right" onClick={this.toggle}> Toggle
+                        </button>
                     </div>
                 </div>
 
@@ -172,4 +172,5 @@ class CourseManagerComponent extends React.Component {
         )
     }
 }
+
 export default CourseManagerComponent

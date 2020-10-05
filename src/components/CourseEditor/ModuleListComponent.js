@@ -2,9 +2,11 @@ import React from "react";
 
 const ModuleListComponent = ({modules}) =>
 
-        <ul>
+        <ul className="list-group table-hover ">
             {modules.map(module =>
-                             <li key={module._id}>
+                             <li
+                                 className="list-group-item list-group-item-action"
+                                 key={module._id}>
                                      {module.title}
                              </li>
             )}

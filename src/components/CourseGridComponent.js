@@ -1,6 +1,5 @@
 import React from "react";
 import CourseCard from "./CourseCard";
-import CourseRow from "./CourseRow";
 
 const CourseGridComponent = ({courses, deleteCourse, showEditor}) =>
 

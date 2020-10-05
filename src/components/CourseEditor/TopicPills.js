@@ -2,11 +2,19 @@ import React from "react";
 
 const TopicPills = () =>
 
-    <ul>
-        <li> Topic 1</li>
-        <li> Topic 2</li>
-        <li> Topic 3</li>
-        <li> Topic 4</li>
+    <ul class="nav nav-pills mt-3">
+        <li className="nav-item">
+            <a className="nav-link active" href="#">Installing NPM</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link" href="#">Getting BootStrap</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link" href="#">React Basics</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link" href="#">Single Page App</a>
+        </li>
     </ul>
 
 export default TopicPills
