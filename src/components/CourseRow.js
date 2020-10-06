@@ -22,6 +22,7 @@ class CourseRow extends React.Component {
                     {
                         this.state.editing &&
                         <input
+                            className="input-large search-query form-control"
                         onChange={(e) => this.setState({
                         course: {
                         ...this.state.course,

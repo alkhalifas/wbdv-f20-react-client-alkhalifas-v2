@@ -1,10 +1,12 @@
 import React from "react";
+import {updateCourse} from "../services/CourseService";
 
 //Change to class to maintain state
 class CourseCard extends React.Component {
 
     state = {
-        editing: false
+        editing: false,
+        course: this.props.course
     }
 
     render() {
@@ -18,11 +20,21 @@ class CourseCard extends React.Component {
                     {
                         ! this.state.editing &&
                         <a onClick={this.props.showEditor} href="#">
-                            {this.props.course.title}
+                            {this.state.course.title}
                         </a>
                     }
                     {
-                        this.state.editing && <input/>
+                        this.state.editing &&
+                        <textarea
+                            cols="15" rows="5"
+                            onChange={(e) => this.setState({
+                                                               course: {
+                                                                   ...this.state.course,
+                                                                   title: e.target.value
+                                                               }
+                                                           })}
+                            value={this.state.course.title}
+                        />
                     }
                 </div>
 
@@ -47,6 +59,7 @@ class CourseCard extends React.Component {
                         </button>
 
                         <button className="btn btn-light" onClick={() => {
+                            updateCourse(this.state.course._id, this.state.course).then(status => {})
                             this.setState({
                                               editing : false
                                           })
