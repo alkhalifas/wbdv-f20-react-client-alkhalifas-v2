@@ -111,9 +111,10 @@ class CourseManagerComponent extends React.Component {
                           showEditor: false
                       })
 
-    updateForm = (newState) => {
-        this.setState(newState)
-    }
+    updateForm = (e) =>
+        this.setState({
+                          newCourseTitle: e.target.value
+                      })
 
     render() {
         return (

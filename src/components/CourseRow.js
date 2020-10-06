@@ -1,10 +1,13 @@
 import React from "react";
+import {updateCourse} from "../services/CourseService";
+
 
 //Change to class to maintain state
 class CourseRow extends React.Component {
 
     state = {
-        editing: false
+        editing: false,
+        course: this.props.course
     }
 
     render() {
@@ -13,16 +16,26 @@ class CourseRow extends React.Component {
                 <td>{
                     ! this.state.editing &&
                     <a onClick={this.props.showEditor} href="#">
-                        {this.props.course.title}
+                        {this.state.course.title}
                     </a>
                 }
                     {
-                        this.state.editing && <input/>
+                        this.state.editing &&
+                        <input
+                        onChange={(e) => this.setState({
+                        course: {
+                        ...this.state.course,
+                        title: e.target.value
+                        }
+                        })}
+                        value={this.state.course.title}
+                        />
                     }
                 </td>
 
+{/*//------------------------------------------- Button delete -------------------------------------//*/}
                 <td>
-                    <button className="btn btn-light" onClick={() => this.props.deleteCourse(this.props.course)}>
+                <button className="btn btn-light" onClick={() => this.props.deleteCourse(this.props.course)}>
                         <svg className="bi bi-trash-fill wbdv-row wbdv-button wbdv-delete"
                              fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
                              xmlns="http://www.w3.org/2000/svg">
@@ -32,15 +45,19 @@ class CourseRow extends React.Component {
                         </svg>
                     </button>
                 </td>
+{/*//------------------------------------------- Button Edit -------------------------------------//*/}
                 <td>
                     <button className="btn btn-light" onClick={() => {
                         this.setState({
                                           editing : true
                                       })
-                    }}><i className="far fa-edit"></i></button>
+                    }}><i className="far fa-edit"></i>
+                    </button>
                 </td>
+{/*//------------------------------------------- Button Save -------------------------------------//*/}
                 <td>
                     <button className="btn btn-light" onClick={() => {
+                        updateCourse(this.state.course._id, this.state.course).then(status => {})
                         this.setState({
                                           editing : false
                                       })

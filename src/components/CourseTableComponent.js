@@ -16,7 +16,6 @@ const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
             {
                 courses.map(function(course, index) {
                     return(
-
                         <CourseRow
                             key={course._id}
                             course={course}
