@@ -3,12 +3,17 @@ import ModuleListComponent from "./ModuleListComponent";
 import LessonTabs from "./LessonTabs";
 import TopicPills from "./TopicPills";
 
-const CourseEditorComponent = ({hideEditor}) =>
+const CourseEditorComponent = ({hideEditor, match, courseId}) =>
 
     <div>
         <div className="row">
-            <button className="btn btn-light mr-2" onClick={hideEditor}>Return</button>
-            <h3>Course Editor</h3>
+            <div>
+                <a className="btn btn-light mr-2 mt-2" href={"/courses"}>
+                    <i className="fas fa-backspace"></i>
+                </a>
+            </div>
+
+            <h1>Course Editor:  {match.params.courseId}</h1>
 
         </div>
             <div className="row">
@@ -29,6 +34,7 @@ const CourseEditorComponent = ({hideEditor}) =>
                     <TopicPills/>
                 </div>
             </div>
+
     </div>
 
 

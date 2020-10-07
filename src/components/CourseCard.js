@@ -20,7 +20,7 @@ class CourseCard extends React.Component {
                     {
                         ! this.state.editing &&
                         <a onClick={this.props.showEditor} href="#">
-                            {this.state.course.title}
+                            {`${this.state.course.title.substring(0, 10)} ...`}
                         </a>
                     }
                     {
