@@ -1,6 +1,6 @@
 import React from "react";
 
-const LessonTabs = ({lessons}) =>
+const LessonTabsComponent = ({lessons}) =>
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -26,4 +26,4 @@ const LessonTabs = ({lessons}) =>
     </ul>
 
 
-export default LessonTabs
+export default LessonTabsComponent

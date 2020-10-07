@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 
 //Change to class to maintain state
-class CourseRow extends React.Component {
+class CourseRowContainer extends React.Component {
 
     state = {
         editing: false,
@@ -78,4 +78,4 @@ class CourseRow extends React.Component {
     }
 }
 
-export default CourseRow
+export default CourseRowContainer

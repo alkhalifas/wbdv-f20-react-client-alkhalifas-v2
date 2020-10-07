@@ -1,5 +1,5 @@
 import React from "react";
-import CourseCard from "./CourseCard";
+import CourseCardContainer from "./CourseCardContainer";
 
 const CourseGridComponent = ({courses, deleteCourse, showEditor}) =>
 
@@ -7,7 +7,7 @@ const CourseGridComponent = ({courses, deleteCourse, showEditor}) =>
         <div className="row">
             {
                 courses.map((course, index) =>
-                                (<CourseCard
+                                (<CourseCardContainer
                                     key={course._id}
                                     course={course}
                                     showEditor={showEditor}

@@ -1,12 +1,12 @@
 import React from "react";
 import ModuleListComponent from "./ModuleListComponent";
-import LessonTabs from "./LessonTabs";
-import TopicPills from "./TopicPills";
-
+import LessonTabsComponent from "./LessonTabsComponent";
+import TopicPillsComponent from "./TopicPillsComponent";
+import Widget from "./Widget";
 const CourseEditorComponent = ({hideEditor, match, courseId}) =>
 
     <div>
-        <div className="row">
+        <div className="row container mb-4">
             <div>
                 <a className="btn btn-light mr-2 mt-2" href={"/courses"}>
                     <i className="fas fa-backspace"></i>
@@ -30,8 +30,9 @@ const CourseEditorComponent = ({hideEditor, match, courseId}) =>
                         ]}/>
                 </div>
                 <div className="col-8">
-                    <LessonTabs/>
-                    <TopicPills/>
+                    <LessonTabsComponent/>
+                    <TopicPillsComponent/>
+                    {/*<Widget/>*/}
                 </div>
             </div>
 
