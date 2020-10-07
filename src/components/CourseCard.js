@@ -26,6 +26,7 @@ class CourseCard extends React.Component {
                     {
                         this.state.editing &&
                         <textarea
+                            className="form-control"
                             cols="15" rows="5"
                             onChange={(e) => this.setState({
                                                                course: {

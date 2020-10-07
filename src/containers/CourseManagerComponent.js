@@ -2,8 +2,8 @@ import React from "react"
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor
-                                                                                     // syntax
+import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor// syntax
+import './CourseManagerComponent.css'
 
 class CourseManagerComponent extends React.Component {
     //Utilizing class instead of function because we need to maintain state
@@ -125,26 +125,27 @@ class CourseManagerComponent extends React.Component {
                     </div>
 
                     <div className="col-6 align-middle mt-2">
-                        <input style={{width: "80%"}}
-                               className="flex-fill  flex-column"
+                        <input
+                               className="search-query form-control"
                                placeholder="Enter New Course Here"
                                onChange={(e) =>
                                    this.updateForm({
                                                        newCourseTitle: e.target.value
                                                    })} //raw event handler
                                value={this.state.newCourseTitle}/>
-                        <button className="btn" onClick={this.addCourse}>
-                            <i aria-hidden="true"
-                               className="fa fa-plus-circle pull-right fa-2x wbdv-add-course wbdv-add-course-button-white d-block"></i>
-                        </button>
                     </div>
-
-                    <div className="col-2 mt-2">
-                        <button className="btn btn-light pull-right" onClick={this.toggle}> Toggle
+                    <div>
+                        <button className="btn pull-right float-right" onClick={this.addCourse}>
+                            <i aria-hidden="true"
+                               className="fa fa-plus-circle fa-2x d-block float-right pull-right"></i>
                         </button>
                     </div>
                 </div>
-
+                <div className="col-12">
+                    <button
+                        className="btn btn-light pull-right justify-content-end" onClick={this.toggle}> Toggle
+                    </button>
+                </div>
                 <div className="container">
                     {
                         this.state.showEditor &&

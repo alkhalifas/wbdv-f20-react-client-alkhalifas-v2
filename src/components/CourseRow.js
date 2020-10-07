@@ -33,7 +33,9 @@ class CourseRow extends React.Component {
                         />
                     }
                 </td>
-
+                <td>
+                    {this.state.course._updatedAt}
+                </td>
 {/*//------------------------------------------- Button delete -------------------------------------//*/}
                 <td>
                 <button className="btn btn-light" onClick={() => this.props.deleteCourse(this.props.course)}>

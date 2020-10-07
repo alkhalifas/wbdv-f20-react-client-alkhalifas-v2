@@ -1,3 +1,3 @@
-export const API_URL = "https://wbdv-generic-server.herokuapp.com/api/alkhalifas/courses"
+export const API_URL_COURSES = "https://wbdv-generic-server.herokuapp.com/api/alkhalifas/courses"
 
 

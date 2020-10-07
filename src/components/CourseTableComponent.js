@@ -7,6 +7,7 @@ const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
             <thead>
                 <tr>
                     <th>Course Name</th>
+                    <th>Last Edited</th>
                     <th> </th>
                     <th> </th>
                     <th> </th>
