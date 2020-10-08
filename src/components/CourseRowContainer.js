@@ -1,9 +1,10 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
 
 
 //Change to class to maintain state
-class CourseRow extends React.Component {
+class CourseRowContainer extends React.Component {
 
     state = {
         editing: false,
@@ -15,14 +16,14 @@ class CourseRow extends React.Component {
             <tr>
                 <td>{
                     ! this.state.editing &&
-                    <a onClick={this.props.showEditor} href="#">
+                    <Link to={`/course-editor/${this.state.course._id}`}>
                         {this.state.course.title}
-                    </a>
+                    </Link>
                 }
                     {
                         this.state.editing &&
                         <input
-                            className="input-large search-query form-control"
+                        className="input-large search-query form-control"
                         onChange={(e) => this.setState({
                         course: {
                         ...this.state.course,
@@ -35,6 +36,9 @@ class CourseRow extends React.Component {
                 </td>
                 <td>
                     {this.state.course._updatedAt}
+                </td>
+                <td>
+                    me
                 </td>
 {/*//------------------------------------------- Button delete -------------------------------------//*/}
                 <td>
@@ -74,4 +78,4 @@ class CourseRow extends React.Component {
     }
 }
 
-export default CourseRow
+export default CourseRowContainer

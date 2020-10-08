@@ -1,8 +1,8 @@
 import React from "react";
 
-const TopicPills = () =>
+const TopicPillsComponent = () =>
 
-    <ul class="nav nav-pills mt-3">
+    <ul class="nav nav-pills mt-5">
         <li className="nav-item">
             <a className="nav-link active" href="#">Installing NPM</a>
         </li>
@@ -17,4 +17,4 @@ const TopicPills = () =>
         </li>
     </ul>
 
-export default TopicPills
+export default TopicPillsComponent

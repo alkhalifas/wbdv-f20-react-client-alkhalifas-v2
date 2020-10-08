@@ -1,5 +1,5 @@
 import React from "react";
-import CourseRow from "./CourseRow";
+import CourseRowContainer from "./CourseRowContainer";
 
 const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
     <div className="table table-hover container">
@@ -8,6 +8,7 @@ const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
                 <tr>
                     <th>Course Name</th>
                     <th>Last Edited</th>
+                    <th>Owner</th>
                     <th> </th>
                     <th> </th>
                     <th> </th>
@@ -17,7 +18,7 @@ const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
             {
                 courses.map(function(course, index) {
                     return(
-                        <CourseRow
+                        <CourseRowContainer
                             key={course._id}
                             course={course}
                             showEditor={showEditor}

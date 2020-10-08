@@ -4,6 +4,9 @@ import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor// syntax
 import './CourseManagerComponent.css'
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import CourseListComponent from "../components/CourseListComponent";
+
 
 class CourseManagerComponent extends React.Component {
     //Utilizing class instead of function because we need to maintain state
@@ -119,59 +122,103 @@ class CourseManagerComponent extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <h1>Course Manager</h1>
-                    </div>
 
-                    <div className="col-6 align-middle mt-2">
-                        <input
-                               className="search-query form-control"
-                               placeholder="Enter New Course Here"
-                               onChange={(e) =>
-                                   this.updateForm({
-                                                       newCourseTitle: e.target.value
-                                                   })} //raw event handler
-                               value={this.state.newCourseTitle}/>
-                    </div>
-                    <div>
-                        <button className="btn pull-right float-right" onClick={this.addCourse}>
-                            <i aria-hidden="true"
-                               className="fa fa-plus-circle fa-2x d-block float-right pull-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <button
-                        className="btn btn-light pull-right justify-content-end" onClick={this.toggle}> Toggle
-                    </button>
-                </div>
-                <div className="container">
-                    {
-                        this.state.showEditor &&
-                        <CourseEditorComponent hideEditor={this.hideEditor}/>
-                    }
+                {/*<div className="row">*/}
+                {/*    <div className="col-4">*/}
+                {/*        <h1>Course Manager</h1>*/}
+                {/*    </div>*/}
 
-                    {
-                        !this.state.showEditor &&
-                        <div>
+                {/*    <div className="col-6 align-middle mt-2">*/}
+                {/*        <input*/}
+                {/*               className="search-query form-control"*/}
+                {/*               placeholder="Enter New Course Here"*/}
+                {/*               onChange={(e) =>*/}
+                {/*                   this.updateForm({*/}
+                {/*                                       newCourseTitle: e.target.value*/}
+                {/*                                   })} //raw event handler*/}
+                {/*               value={this.state.newCourseTitle}/>*/}
+                {/*    </div>*/}
+                {/*    <div>*/}
+                {/*        <button className="btn pull-right float-right" onClick={this.addCourse}>*/}
+                {/*            <i aria-hidden="true"*/}
+                {/*               className="fa fa-plus-circle fa-2x d-block float-right pull-right"></i>*/}
+                {/*        </button>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="col-12">*/}
+                {/*    <button*/}
+                {/*        className="btn btn-light pull-right justify-content-end" onClick={this.toggle}> Toggle*/}
+                {/*    </button>*/}
+                {/*</div>*/}
+                {/*<div className="container">*/}
+                {/*    {*/}
+                {/*        this.state.showEditor &&*/}
+                {/*        <CourseEditorComponent hideEditor={this.hideEditor}/>*/}
+                {/*    }*/}
 
-                            {
-                                this.state.layout === 'table' &&
-                                <CourseTableComponent
-                                    showEditor={this.showEditor}
-                                    deleteCourse={this.deleteCourse}
-                                    courses={this.state.courses}/>}
-                            {
-                                this.state.layout === 'grid' &&
-                                <CourseGridComponent
-                                    showEditor={this.showEditor}
-                                    deleteCourse={this.deleteCourse}
-                                    courses={this.state.courses}/>
-                            }
-                        </div>
-                    }
-                </div>
+                {/*    {*/}
+                {/*        !this.state.showEditor &&*/}
+                {/*        <div>*/}
+
+                {/*            {*/}
+                {/*                this.state.layout === 'table' &&*/}
+                {/*                <CourseTableComponent*/}
+                {/*                    showEditor={this.showEditor}*/}
+                {/*                    deleteCourse={this.deleteCourse}*/}
+                {/*                    courses={this.state.courses}/>}*/}
+                {/*            {*/}
+                {/*                this.state.layout === 'grid' &&*/}
+                {/*                <CourseGridComponent*/}
+                {/*                    showEditor={this.showEditor}*/}
+                {/*                    deleteCourse={this.deleteCourse}*/}
+                {/*                    courses={this.state.courses}/>*/}
+                {/*            }*/}
+                {/*        </div>*/}
+                {/*    }*/}
+                {/*</div>*/}
+                <Router>
+
+                    <Route
+                        path="/"
+                        exact={true}
+                        render={() =>
+                            <div>
+                                <h1>Home</h1>
+                                <a href="/courses">
+                                    Courses
+                                </a>
+                            </div>
+
+                        }
+                    />
+
+                    <Route
+                        path="/courses"
+                        exact={true}
+                        render={() =>
+                            <CourseListComponent
+                                toggle={this.toggle}
+                                updateForm={this.updateForm}
+                                newCourseTitle={this.state.newCourseTitle}
+                                addCourse={this.addCourse}
+                                layout={this.state.layout}
+                                showEditor={this.showEditor}
+                                deleteCourse={this.deleteCourse}
+                                courses={this.state.courses}
+                            />
+                        }/>
+
+                    <Route
+                        path="/course-editor/:courseId"
+                        exact={true}
+                        render={(props) =>
+                            <CourseEditorComponent
+                                courseId={props.match.params.courseId}
+                                {...props}/>
+                        }/>
+
+
+                </Router>
 
             </div>
         )

@@ -1,8 +1,10 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
+import "./CourseCard.css"
 
 //Change to class to maintain state
-class CourseCard extends React.Component {
+class CourseCardContainer extends React.Component {
 
     state = {
         editing: false,
@@ -19,9 +21,9 @@ class CourseCard extends React.Component {
                 <div className="card-header">
                     {
                         ! this.state.editing &&
-                        <a onClick={this.props.showEditor} href="#">
-                            {this.state.course.title}
-                        </a>
+                        <Link to={`/course-editor/${this.state.course._id}`}>
+                            {`${this.state.course.title.substring(0, 30)} ...`}
+                        </Link>
                     }
                     {
                         this.state.editing &&
@@ -74,4 +76,4 @@ class CourseCard extends React.Component {
     }
 }
 
-export default CourseCard
+export default CourseCardContainer
