@@ -49,6 +49,8 @@ const CourseListComponent =
                 deleteCourse={deleteCourse}
                 courses={courses}/>}
            {layout === 'grid' &&
-            <CourseGridComponent courses={courses}/>}
+            <CourseGridComponent showEditor={showEditor}
+                                 deleteCourse={deleteCourse}
+                                 courses={courses}/>}
        </div>
 export default CourseListComponent
