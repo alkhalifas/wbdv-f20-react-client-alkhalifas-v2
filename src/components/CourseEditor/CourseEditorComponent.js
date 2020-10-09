@@ -2,7 +2,7 @@ import React from "react";
 import ModuleListComponent from "./ModuleListComponent";
 import LessonTabsComponent from "./LessonTabsComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
-import Widget from "./Widget";
+import WidgetComponent from "./WidgetComponent";
 const CourseEditorComponent = ({hideEditor, match, courseId}) =>
 
     <div>
@@ -32,7 +32,7 @@ const CourseEditorComponent = ({hideEditor, match, courseId}) =>
                 <div className="col-8">
                     <LessonTabsComponent/>
                     <TopicPillsComponent/>
-                    {/*<Widget/>*/}
+                    {/*<WidgetComponent/>*/}
                 </div>
             </div>
 

@@ -3,12 +3,12 @@ import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor// syntax
-import './CourseManagerComponent.css'
+import './CourseManagerContainer.css'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import CourseListComponent from "../components/CourseListComponent";
 
 
-class CourseManagerComponent extends React.Component {
+class CourseManagerContainer extends React.Component {
     //Utilizing class instead of function because we need to maintain state
 
     state = {
@@ -225,4 +225,4 @@ class CourseManagerComponent extends React.Component {
     }
 }
 
-export default CourseManagerComponent
+export default CourseManagerContainer
