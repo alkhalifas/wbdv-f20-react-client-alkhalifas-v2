@@ -4,6 +4,7 @@ import CourseCardContainer from "./CourseCardContainer";
 const CourseGridComponent = ({courses, deleteCourse, showEditor}) =>
 
     <div>
+
         <div className="row">
             {
                 courses.map((course, index) =>

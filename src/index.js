@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {combineReducers} from "redux";
+
+
 
 ReactDOM.render(
   <React.StrictMode>

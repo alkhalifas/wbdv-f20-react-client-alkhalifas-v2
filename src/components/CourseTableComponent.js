@@ -3,6 +3,7 @@ import CourseRowContainer from "./CourseRowContainer";
 
 const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
     <div className="table table-hover container">
+
         <table>
             <thead>
                 <tr>

@@ -19,7 +19,7 @@ const CourseListComponent =
        <div>
            <div className="row">
                    <div className="col-4">
-                       <h1>Course Manager</h1>
+                       <h1>Course List</h1>
                    </div>
                    <div className="col-6 align-middle mt-2">
                        <input
