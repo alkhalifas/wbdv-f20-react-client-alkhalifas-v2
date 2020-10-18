@@ -1,5 +1,5 @@
 import React from "react";
-import CourseRowContainer from "./CourseRowContainer";
+import CourseRowContainer from "./CourseRowComponent";
 
 const CourseTableComponent = ({courses, deleteCourse, showEditor}) =>
     <div className="table table-hover container">

@@ -1,42 +1,75 @@
 import React from "react";
+import {findCourseById} from "../../services/CourseService";
+import WidgetListContainer from "../../containers/WidgetListContainer";
+import WidgetList from "../WidgetList";
 import ModuleListComponent from "./ModuleListComponent";
-import LessonTabsComponent from "./LessonTabsComponent";
-import TopicPillsComponent from "./TopicPillsComponent";
-import WidgetComponent from "./WidgetComponent";
-const CourseEditorComponent = ({hideEditor, match, courseId}) =>
+import {connect} from "react-redux";
+import moduleService from "../../services/ModuleService"
+import lessonService from "../../services/LessonService"
+import LessonTabs from "./LessonsTabComponent";
 
-    <div>
-        <div className="row container mb-4">
+class CourseEditorComponent extends React.Component {
+
+    componentDidMount() {
+        const courseId = this.props.match.params.courseId
+        const moduleId = this.props.match.params.moduleId
+        this.props.findCourseById(courseId)
+        this.props.findModulesForCourse(courseId)
+        if(moduleId) {
+            this.props.findLessonsForModule(moduleId)
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const moduleId = this.props.match.params.moduleId
+        if(moduleId !== prevProps.match.params.moduleId) {
+            this.props.findLessonsForModule(moduleId)
+        }
+    }
+
+    render() {
+        return(
             <div>
-                <a className="btn btn-light mr-2 mt-2" href={"/courses"}>
-                    <i className="fas fa-backspace"></i>
-                </a>
-            </div>
-
-            <h1>Course Editor:  {match.params.courseId}</h1>
-
-        </div>
-            <div className="row">
-                <div className="col-4 list-group">
-                    <ModuleListComponent
-                        modules={[
-                            {_id: "123", title: "CSS"},
-                            {_id: "234", title: "HTML"},
-                            {_id: "345", title: "React"},
-                            {_id: "456", title: "Angular"},
-                            {_id: "567", title: "Python"},
-                            {_id: "678", title: "Java"},
-                            {_id: "789", title: "JavaScript"}
-                        ]}/>
-                </div>
-                <div className="col-8">
-                    <LessonTabsComponent/>
-                    <TopicPillsComponent/>
-                    {/*<WidgetComponent/>*/}
+                <h1>Course Editor</h1>
+                <div className="row">
+                    <div className="col-4">
+                        <ModuleListComponent/>
+                    </div>
+                    <div className="col-8">
+                        <LessonTabs/>
+                        <h1>Topics</h1>
+                        <WidgetList/>
+                    </div>
                 </div>
             </div>
+        )
+    }
+}
 
-    </div>
+const stateToPropertyMapper = (state) => ({
+    course: state.courseReducer.course
+})
 
+const propertyToDispatchMapper = (dispatch) => ({
+    findCourseById: (courseId) => findCourseById(courseId)
+        .then(actualCourse => dispatch({
+                                           type: "SET_COURSES",
+                                           course: actualCourse
+                                       })),
+    findModulesForCourse: (courseId) => moduleService.findModulesForCourse(courseId)
+        .then(actualModules => dispatch({
+                                            type: "FIND_MODULES_FOR_COURSE",
+                                            modules: actualModules
+                                        })),
+    findLessonsForModule: (moduleId) =>
+        lessonService.findLessonsForModule(moduleId)
+            .then(lessons => dispatch({
+                                          type: "FIND_LESSONS_FOR_MODULE",
+                                          lessons,
+                                          moduleId
+                                      }))
+})
 
-export default CourseEditorComponent
+export default connect
+(stateToPropertyMapper, propertyToDispatchMapper)
+(CourseEditorComponent)
