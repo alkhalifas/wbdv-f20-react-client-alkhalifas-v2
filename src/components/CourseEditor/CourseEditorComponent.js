@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import LessonTabs from "./LessonsTabComponent";
+import TopicPillsComponent from "./TopicPillsComponent";
 
 class CourseEditorComponent extends React.Component {
 
@@ -37,8 +38,7 @@ class CourseEditorComponent extends React.Component {
                     </div>
                     <div className="col-8">
                         <LessonTabs/>
-                        <h1>Topics</h1>
-                        <WidgetList/>
+                        <TopicPillsComponent/>
                     </div>
                 </div>
             </div>

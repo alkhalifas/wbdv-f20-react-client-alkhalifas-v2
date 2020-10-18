@@ -28,12 +28,11 @@ export class CourseManagerComponent extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarText">
                             <ul className="navbar-nav mr-auto">
-                                <Link to="/login" className="mr-2">Login </Link>
-                                <Link to="/register" className="mr-2">Register </Link>
-                                <Link to="/profile" className="mr-2">Profile </Link>
-                                <Link to="/table" className="mr-2">Course List</Link>
-                                <Link to="/grid" className="mr-2">Course Grid </Link>
-                                <Link to="/edit" className="mr-2">Editor </Link>
+                                <Link to="/" className="mr-2 text-white">Home </Link>
+                                <Link to="/login" className="mr-2 text-white">Login </Link>
+                                <Link to="/register" className="mr-2 text-white">Register </Link>
+                                <Link to="/profile" className="mr-2 text-white">Profile </Link>
+                                <Link to="/table" className="mr-2 text-white">Course Manager</Link>
                             </ul>
                         </div>
                     </nav>
@@ -48,6 +47,7 @@ export class CourseManagerComponent extends React.Component {
                     {/*<Link to="/table">Courses</Link> |*/}
                     {/*<Link to="/grid">Grid</Link> |*/}
                     {/*<Link to="/edit">Editor</Link>*/}
+                    <Route path="/" exact component={Login}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/register" exact component={Register}/>
                     <Route path="/profile" exact component={Profile}/>
@@ -59,7 +59,9 @@ export class CourseManagerComponent extends React.Component {
                     </Route>
 
                     <Route
-                        path={["/edit/:courseId", "/edit/:courseId/modules/:moduleId"]}
+                        path={["/edit/:courseId",
+                               "/edit/:courseId/modules/:moduleId",
+                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId"]}
                         exact
                         component={CourseEditorComponent}/>
                 </div>

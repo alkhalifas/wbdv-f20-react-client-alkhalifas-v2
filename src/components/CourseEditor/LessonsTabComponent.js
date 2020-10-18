@@ -2,10 +2,11 @@ import React from "react";
 import {lessonReducer} from "../../reducers/lessonReducer";
 import {connect} from "react-redux";
 import lessonService, {createLessonForModule} from "../../services/LessonService";
-import moduleService from "../../services/ModuleService";
+import {Link} from "react-router-dom";
 
 const LessonsTabComponent = (
     {
+        courseId,
         moduleId,
         lessons=[],
         createLesson,
@@ -24,7 +25,11 @@ const LessonsTabComponent = (
                                         {
                                             !lesson.editing &&
                                             <span>
-                                                {lesson.title}
+
+                                                <Link to={`/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}>
+                                                    {lesson.title}
+                                                </Link>
+
                                                 <button
                                                     className="btn btn-light btn-sm"
                                                     onClick={() => editLesson(lesson)}>
