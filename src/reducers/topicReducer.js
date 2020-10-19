@@ -7,7 +7,7 @@ export const topicReducer = (state=initialState, action) => {
             return {
                 ...state,
                 topics: state.topics
-                    .map(topic => topic._id === action.topic._id ? action.topic : topic)
+                    .map(topic => topic._id === action.topic._id ? action.topicId : topic)
             };
         case "DELETE_TOPIC":
             return {

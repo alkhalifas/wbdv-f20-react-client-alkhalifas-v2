@@ -22,17 +22,17 @@ const TopicPillsComponent = (
         <h6>Module ({moduleId})</h6>
         <h6>Lessons ({lessonId})</h6>
 
-        <ul className="nav nav-pills">
+        <ul className="nav nav-pills ">
             {
                 topics.map(topic =>
                                <li key={topic._id}
-                                   className="nav-item">
+                                   className="nav-item border rounded m-2">
 
                                    <a className="nav-link" data-toggle="tab">
                                        {topic.title}
                                         <button
                                             className="btn btn-light btn-sm"
-                                            onClick={() => createTopic(topic._id)}>
+                                            onClick={() => deleteTopic(topic._id)}>
                                             <i className="fas fa-trash-alt"></i>
                                         </button>
                                    </a>
@@ -40,12 +40,12 @@ const TopicPillsComponent = (
                 )
             }
 
-            <li className="nav-item">
+            <li className="nav-item border rounded m-2">
                 <a className="nav-link">
                     <button
-                        className="btn btn-light btn-sm ml-2"
+                        className="btn btn-light btn-sm"
                         onClick={() => createTopic(lessonId)}>
-                        +
+                          +
                         {console.log("Topic Added!")}
                     </button>
                 </a>
@@ -90,20 +90,29 @@ const dispatchToPropertyMapper = (dispatch) => ({
                                          topic: topic
                                      })),
     deleteTopic: (topicId) =>
+    {
+
         TopicService.deleteTopic(topicId)
-            .then(status => dispatch({
-                                         type: "UPDATE_TOPIC",
-                                         topicId
-                                     })),
-    createTopic: (lessonId) =>
+            .then(status => {
+
+                dispatch({
+                             type: "DELETE_TOPIC",
+                             topicId
+                         })
+            })
+    },
+    createTopic: (lessonId) => {
         TopicService.createTopicForLesson(
             lessonId, {
                 title: "New Topic"
             })
-            .then(actualTopic => dispatch({
-                                               type: "CREATE_TOPIC_FOR_LESSON",
-                                               lesson: actualTopic
-                                           }))
+            .then(actualTopic => {
+                dispatch({
+                             type: "CREATE_TOPIC_FOR_LESSON",
+                             lesson: actualTopic
+                         })
+            })
+    }
 })
 
 

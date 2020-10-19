@@ -1,5 +1,4 @@
 import React from "react";
-
 const HomeComponent = () =>
     <div>
         <div className="jumbotron text-center">

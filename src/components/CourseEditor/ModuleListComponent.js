@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 const ModuleListComponent = (
     {
+        moduleId,
         course = {},
         modules = [],
 
@@ -21,7 +22,7 @@ const ModuleListComponent = (
             <ul className="list-group table-hover">
                 {modules.map(module =>
                                  <li key={module._id}
-                                     className="list-group-item list-group-item-action">
+                                     className={`list-group-item list-group-item-action ${moduleId === module._id?'active':''}`}>
 
                                      {
                                          !module.editing &&
@@ -94,6 +95,7 @@ const ModuleListComponent = (
 const stateToPropertyMapper = (state) => ({
     modules: state.moduleReducer.modules, // for list of modules
     course: state.courseReducer.course, // for single course
+    moduleId: state.lessonReducer.moduleId
 })
 
 const propertyToDispatchMapper = (dispatch) => ({

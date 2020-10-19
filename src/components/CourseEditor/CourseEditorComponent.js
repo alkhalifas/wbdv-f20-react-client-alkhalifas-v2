@@ -9,6 +9,7 @@ import lessonService from "../../services/LessonService"
 import LessonTabs from "./LessonsTabComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
 import topicService from "../../services/TopicService";
+import {Link} from "react-router-dom";
 
 class CourseEditorComponent extends React.Component {
 
@@ -29,6 +30,7 @@ class CourseEditorComponent extends React.Component {
                 this.props.findTopicsForLesson(lessonId)
             }
         }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -45,11 +47,13 @@ class CourseEditorComponent extends React.Component {
 
 
 
+
     }
 
     render() {
         return(
             <div>
+
                 <h1>Course Editor</h1>
                 <div className="row">
                     <div className="col-4">
