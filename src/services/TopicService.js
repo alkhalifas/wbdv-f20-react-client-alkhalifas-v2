@@ -28,6 +28,10 @@ export const findTopicsForLesson = (lessonId) =>
     fetch(`${lessonUrl}/${lessonId}/topics`)
         .then(response => response.json())
 
+export const findTopic = (topicId) =>
+    fetch(`${topicUrl}/${topicId}`)
+        .then(response => response.json())
+
 export default {
     findTopicsForLesson,
     createTopicForLesson,

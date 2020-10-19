@@ -19,13 +19,17 @@ export const updateLesson = (lessonId, newLesson) =>
         }
     }).then(response => response.json())
 
-export const deleteLesson = lessonId =>
+export const deleteLesson = (lessonId) =>
     fetch(`${lessonUrl}/${lessonId}`,{
         method: "DELETE"
     }).then(response => response.json())
 
 export const findLessonsForModule = (moduleId) =>
     fetch(`${moduleUrl}/${moduleId}/lessons`)
+        .then(response => response.json())
+
+export const findLesson = (lessonId) =>
+    fetch(`${lessonUrl}/${lessonId}`)
         .then(response => response.json())
 
 export default {

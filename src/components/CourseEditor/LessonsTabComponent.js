@@ -8,7 +8,7 @@ const LessonsTabComponent = (
         course = {},
         moduleId,
         lessons=[],
-
+        lessonId,
         createLesson,
         deleteLesson,
         updateLesson,
@@ -20,8 +20,12 @@ const LessonsTabComponent = (
         <ul className="nav nav-tabs">
             {
                 lessons.map(lesson =>
-                                <li key={lesson._id} className="nav-item">
-                                    <a className="nav-link" data-toggle="tab">
+                                <li key={lesson._id}
+                                    className="nav-item" >
+                                    <a className={`nav-link ${lessonId === lesson._id?'active':''}`} >
+                                        <h6>LessonId ({lessonId})</h6>
+                                        <h6>Lesson._id ({lesson._id})</h6>
+                                        <h6>Lesson._id ({lesson.title})</h6>
                                         {
                                             !lesson.editing &&
                                             <span>
@@ -81,6 +85,7 @@ const stateToPropertyMapper = (state) => ({
     lessons: state.lessonReducer.lessons,
     moduleId: state.lessonReducer.moduleId,
     course: state.courseReducer.course, // for single course
+    lessonId:state.lessonReducer.lessonId
 
 })
 

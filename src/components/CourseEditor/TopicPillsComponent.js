@@ -18,9 +18,9 @@ const TopicPillsComponent = (
     }) =>
     <div>
         <h1>Topics:</h1>
-        <h6>Course ({course._id})</h6>
-        <h6>Module ({moduleId})</h6>
-        <h6>Lessons ({lessonId})</h6>
+        <h6>Course._id ({course._id})</h6>
+        <h6>ModuleId ({moduleId})</h6>
+        <h6>LessonId ({lessonId})</h6>
 
         <ul className="nav nav-pills ">
             {

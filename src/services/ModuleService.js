@@ -28,6 +28,10 @@ export const findModulesForCourse = (courseId) =>
     fetch(`${courseUrl}/${courseId}/modules`)
         .then(response => response.json())
 
+export const findModules = (moduleId) =>
+    fetch(`${moduleUrl}/${moduleId}`)
+        .then(response => response.json())
+
 export default {
     updateModule,
     findModulesForCourse,

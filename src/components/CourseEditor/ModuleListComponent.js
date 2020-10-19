@@ -22,14 +22,15 @@ const ModuleListComponent = (
             <ul className="list-group table-hover">
                 {modules.map(module =>
                                  <li key={module._id}
-                                     className={`list-group-item list-group-item-action ${moduleId === module._id?'active':''}`}>
+                                     className={`list-group-item list-group-item-action ${moduleId === module._id?'active ':''}`}>
 
                                      {
                                          !module.editing &&
                                          <span>
 
 
-                                              <Link to={`/edit/${course._id}/modules/${module._id}`}>
+                                              <Link className={`m-0  ${moduleId === module._id?'text-white ':''}`}
+                                                  to={`/edit/${course._id}/modules/${module._id}`}>
                                                 {module.title}
                                               </Link>
                                              <span className="float-right">
@@ -53,12 +54,12 @@ const ModuleListComponent = (
                                                                                       })}
                                                     value={module.title}/>
                                                     <button
-                                                        className="btn btn-light mr-2"
+                                                        className="btn btn-primary "
                                                         onClick={() => okModule(module)}>
                                                     <i className="far fa-save float-right"></i>
                                                </button>
                                                  <button
-                                                     className="btn btn-light"
+                                                     className="btn btn-primary float-right"
                                                      onClick={() => deleteModule(module)}>
                                                      <i className="fas fa-trash-alt"></i>
                                                    </button>
