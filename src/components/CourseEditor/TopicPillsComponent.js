@@ -1,14 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
 import TopicService from "../../services/TopicService";
-import lessonService from "../../services/LessonService";
+import {Link} from "react-router-dom";
 
 const TopicPillsComponent = (
     {
-        courseId,
+        course = {},
         moduleId,
         lessonId,
         topics=[],
+
         createTopic,
         deleteTopic,
         updateTopic,
@@ -16,13 +17,52 @@ const TopicPillsComponent = (
         okTopic
     }) =>
     <div>
-        <h1>Topics ({lessonId})</h1>
+        <h1>Topics:</h1>
+        <h6>Course ({course._id})</h6>
+        <h6>Module ({moduleId})</h6>
+        <h6>Lessons ({lessonId})</h6>
+
+        <ul className="nav nav-pills">
+            {
+                topics.map(topic =>
+                               <li key={topic._id}
+                                   className="nav-item">
+
+                                   <a className="nav-link" data-toggle="tab">
+                                       {topic.title}
+                                        <button
+                                            className="btn btn-light btn-sm"
+                                            onClick={() => createTopic(topic._id)}>
+                                            <i className="fas fa-trash-alt"></i>
+                                        </button>
+                                   </a>
+                               </li>
+                )
+            }
+
+            <li className="nav-item">
+                <a className="nav-link">
+                    <button
+                        className="btn btn-light btn-sm ml-2"
+                        onClick={() => createTopic(lessonId)}>
+                        +
+                        {console.log("Topic Added!")}
+                    </button>
+                </a>
+
+            </li>
+        </ul>
+
+
     </div>
 
 const stateToPropertyMapper = (state) => ({
     topics: state.topicReducer.topics,
     lessons: state.topicReducer.lessons,
-    moduleId: state.topicReducer.moduleId
+    lessonId: state.topicReducer.lessonId,
+    moduleId: state.lessonReducer.moduleId,
+    course: state.courseReducer.course, // for single course
+
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
@@ -58,15 +98,16 @@ const dispatchToPropertyMapper = (dispatch) => ({
     createTopic: (lessonId) =>
         TopicService.createTopicForLesson(
             lessonId, {
-                title: "New Lesson"
+                title: "New Topic"
             })
             .then(actualTopic => dispatch({
-                                               type: "CREATE_LESSON_FOR_MODULE",
+                                               type: "CREATE_TOPIC_FOR_LESSON",
                                                lesson: actualTopic
                                            }))
 })
 
 
 export default connect
-(stateToPropertyMapper, dispatchToPropertyMapper)
+(stateToPropertyMapper,
+ dispatchToPropertyMapper)
 (TopicPillsComponent)

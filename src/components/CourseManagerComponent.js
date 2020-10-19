@@ -7,6 +7,7 @@ import CourseListComponent from "./CourseListComponent";
 import CourseEditorComponent from "./CourseEditor/CourseEditorComponent";
 import CourseGrid from "./CourseGrid";
 import CourseGridComponent from "./CourseGridComponent";
+import HomeComponent from "./HomeComponent";
 
 export class CourseManagerComponent extends React.Component {
     state = {
@@ -47,7 +48,7 @@ export class CourseManagerComponent extends React.Component {
                     {/*<Link to="/table">Courses</Link> |*/}
                     {/*<Link to="/grid">Grid</Link> |*/}
                     {/*<Link to="/edit">Editor</Link>*/}
-                    <Route path="/" exact component={Login}/>
+                    <Route path="/" exact component={HomeComponent}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/register" exact component={Register}/>
                     <Route path="/profile" exact component={Profile}/>
@@ -61,7 +62,9 @@ export class CourseManagerComponent extends React.Component {
                     <Route
                         path={["/edit/:courseId",
                                "/edit/:courseId/modules/:moduleId",
-                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId"]}
+                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
+                        ]}
                         exact
                         component={CourseEditorComponent}/>
                 </div>

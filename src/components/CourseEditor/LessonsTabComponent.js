@@ -1,14 +1,14 @@
 import React from "react";
-import {lessonReducer} from "../../reducers/lessonReducer";
 import {connect} from "react-redux";
-import lessonService, {createLessonForModule} from "../../services/LessonService";
+import LessonService, {createLessonForModule} from "../../services/LessonService";
 import {Link} from "react-router-dom";
 
 const LessonsTabComponent = (
     {
-        courseId,
+        course = {},
         moduleId,
         lessons=[],
+
         createLesson,
         deleteLesson,
         updateLesson,
@@ -21,12 +21,12 @@ const LessonsTabComponent = (
             {
                 lessons.map(lesson =>
                                 <li key={lesson._id} className="nav-item">
-                                    <a class="nav-link">
+                                    <a className="nav-link" data-toggle="tab">
                                         {
                                             !lesson.editing &&
                                             <span>
 
-                                                <Link to={`/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}>
+                                                <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
                                                     {lesson.title}
                                                 </Link>
 
@@ -75,24 +75,26 @@ const LessonsTabComponent = (
 
             </li>
         </ul>
-    </div>
+    </div>;
 
 const stateToPropertyMapper = (state) => ({
     lessons: state.lessonReducer.lessons,
-    moduleId: state.lessonReducer.moduleId
+    moduleId: state.lessonReducer.moduleId,
+    course: state.courseReducer.course, // for single course
+
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
 
     okLesson: (lesson) =>
-        lessonService.updateLesson(lesson._id, {
+        LessonService.updateLesson(lesson._id, {
             ...lesson, editing: false
         }).then(status => dispatch({
                                     type: "UPDATE_LESSON",
                                     lesson: {...lesson, editing: false}
                                    })),
     editLesson: (lesson) =>
-        lessonService.updateLesson(lesson._id, {
+        LessonService.updateLesson(lesson._id, {
             ...lesson, editing: true
         }).then(status =>
                     dispatch({
@@ -101,19 +103,19 @@ const dispatchToPropertyMapper = (dispatch) => ({
                              })),
 
     updateLesson: (lesson) =>
-        lessonService.updateLesson(lesson._id, lesson)
+        LessonService.updateLesson(lesson._id, lesson)
             .then(status => dispatch({
                                               type: "UPDATE_LESSON",
                                               lesson: lesson
                                           })),
     deleteLesson: (lessonId) =>
-        lessonService.deleteLesson(lessonId)
+        LessonService.deleteLesson(lessonId)
             .then(status => dispatch({
                                          type: "DELETE_LESSON",
                                          lessonId
                                      })),
     createLesson: (moduleId) =>
-        lessonService.createLessonForModule(
+        LessonService.createLessonForModule(
             moduleId, {
                 title: "New Lesson"
             })

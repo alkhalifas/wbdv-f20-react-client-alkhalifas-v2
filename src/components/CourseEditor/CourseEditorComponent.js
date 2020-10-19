@@ -8,24 +8,43 @@ import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import LessonTabs from "./LessonsTabComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
+import topicService from "../../services/TopicService";
 
 class CourseEditorComponent extends React.Component {
 
     componentDidMount() {
-        const courseId = this.props.match.params.courseId
-        const moduleId = this.props.match.params.moduleId
-        this.props.findCourseById(courseId)
-        this.props.findModulesForCourse(courseId)
+        const courseId = this.props.match.params.courseId;
+        const moduleId = this.props.match.params.moduleId;
+        const lessonId = this.props.match.params.lessonId;
+        const topicId = this.props.match.params.topicId;
+
+        this.props.findCourseById(courseId);
+        this.props.findModulesForCourse(courseId);
+        this.props.findLessonsForModule(moduleId);
+        this.props.findTopicsForLesson(lessonId);
+
         if(moduleId) {
-            this.props.findLessonsForModule(moduleId)
+            this.props.findLessonsForModule(moduleId);
+            if(lessonId) {
+                this.props.findTopicsForLesson(lessonId)
+            }
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
+        const lessonId = this.props.match.params.lessonId
+        const topicId = this.props.match.params.topicId
+
         if(moduleId !== prevProps.match.params.moduleId) {
             this.props.findLessonsForModule(moduleId)
         }
+        if(lessonId !== prevProps.match.params.lessonId) {
+            this.props.findTopicsForLesson(lessonId)
+        }
+
+
+
     }
 
     render() {
@@ -67,6 +86,13 @@ const propertyToDispatchMapper = (dispatch) => ({
                                           type: "FIND_LESSONS_FOR_MODULE",
                                           lessons,
                                           moduleId
+                                      })),
+    findTopicsForLesson: (lessonId) =>
+        topicService.findTopicsForLesson(lessonId)
+            .then(topics => dispatch({
+                                          type: "FIND_TOPICS_FOR_LESSON",
+                                          topics,
+                                          lessonId
                                       }))
 })
 

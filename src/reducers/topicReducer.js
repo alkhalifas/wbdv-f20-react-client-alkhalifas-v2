@@ -25,7 +25,7 @@ export const topicReducer = (state=initialState, action) => {
                 ...state,
                 topics: [
                     ...state.topics,
-                    action.topics
+                    action.topic
                 ]
             };
         default:

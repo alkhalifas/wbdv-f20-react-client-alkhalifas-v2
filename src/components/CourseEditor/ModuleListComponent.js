@@ -7,6 +7,7 @@ const ModuleListComponent = (
     {
         course = {},
         modules = [],
+
         deleteModule,
         createModule,
         updateModule,
@@ -21,58 +22,71 @@ const ModuleListComponent = (
                 {modules.map(module =>
                                  <li key={module._id}
                                      className="list-group-item list-group-item-action">
+
                                      {
                                          !module.editing &&
                                          <span>
-                                      <button
-                                          className="btn btn-light mr-2"
-                                          onClick={() => editModule(module)}>
-                                        <i className="far fa-edit"></i>
-                                      </button>
 
-                                      <Link to={`/edit/${course._id}/modules/${module._id}`}>
-                                        {module.title}
-                                      </Link>
-                                </span>
+
+                                              <Link to={`/edit/${course._id}/modules/${module._id}`}>
+                                                {module.title}
+                                              </Link>
+                                             <span className="float-right">
+                                                 <button
+                                                     className="btn btn-light mr-2 pull-right"
+                                                     onClick={() => editModule(module)}>
+                                                <i className="far fa-edit"></i>
+                                             </button>
+                                             </span>
+
+                                        </span>
                                      }
+
                                      {
                                          module.editing &&
                                          <span>
-
-                                   <button
-                                       className="btn btn-light mr-2"
-                                       onClick={() => okModule(module)}>
-                                        <i className="far fa-save float-right"></i>
-                                   </button>
-
-                                <input
-                                    onChange={(event) => updateModule({
-                                                                          ...module,
-                                                                          title: event.target.value
-                                                                      })}
-                                    value={module.title}/>
-                             </span>
+                                                <input
+                                                    onChange={(event) => updateModule({
+                                                                                          ...module,
+                                                                                          title: event.target.value
+                                                                                      })}
+                                                    value={module.title}/>
+                                                    <button
+                                                        className="btn btn-light mr-2"
+                                                        onClick={() => okModule(module)}>
+                                                    <i className="far fa-save float-right"></i>
+                                               </button>
+                                                 <button
+                                                     className="btn btn-light"
+                                                     onClick={() => deleteModule(module)}>
+                                                     <i className="fas fa-trash-alt"></i>
+                                                   </button>
+                                         </span>
                                      }
 
-                                     <span className="float-right">
-                             <button
-                                 className="btn btn-light"
-                                 onClick={() => deleteModule(module)}>
-                                 <i className="fas fa-trash-alt"></i>
-                             </button>
-                         </span>
+
+                                     <span >
+
+                                     </span>
 
 
                                  </li>
                 )
                 }
+                <li className="list-group-item list-group-item-action">
+                    <div className="text-center">
+                        <button
+                            className="btn"
+                            onClick={() => createModule(course)}>
+                                +
+                        </button>
+                    </div>
+
+                </li>
             </ul>
         </div>
 
-        <button
-            onClick={() => createModule(course)}>
-            Create
-        </button>
+
     </div>
 
 // export default ModuleListComponent
@@ -80,7 +94,6 @@ const ModuleListComponent = (
 const stateToPropertyMapper = (state) => ({
     modules: state.moduleReducer.modules, // for list of modules
     course: state.courseReducer.course, // for single course
-    lesson:state.lessonReducer.lesson // for single lesson
 })
 
 const propertyToDispatchMapper = (dispatch) => ({

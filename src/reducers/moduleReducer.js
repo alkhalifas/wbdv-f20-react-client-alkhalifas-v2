@@ -1,5 +1,6 @@
 const initialState = {
-    modules: []
+    modules: [],
+    activeMod: {}
 }
 
 const moduleReducer = (state=initialState, action) => {
