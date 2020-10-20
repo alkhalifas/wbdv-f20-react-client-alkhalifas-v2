@@ -20,6 +20,11 @@ export const lessonReducer = (state=initialState, action) => {
                 lessons: action.lessons,
                 moduleId: action.moduleId
             };
+        case "FIND_LESSON":
+            return {
+                ...state,
+                lessons: action.lessons
+            }
         case "CREATE_LESSON_FOR_MODULE":
             return {
                 ...state,

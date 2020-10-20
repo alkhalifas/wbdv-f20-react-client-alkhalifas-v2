@@ -7,7 +7,7 @@ export const topicReducer = (state=initialState, action) => {
             return {
                 ...state,
                 topics: state.topics
-                    .map(topic => topic._id === action.topic._id ? action.topicId : topic)
+                    .map(topic => topic._id === action.topic._id ? action.topic : topic)
             };
         case "DELETE_TOPIC":
             return {
@@ -18,8 +18,14 @@ export const topicReducer = (state=initialState, action) => {
             return {
                 ...state,
                 topics: action.topics,
-                lessonId: action.lessonId
+                lessonId: action.lessonId,
+                topicId: action.topicId
             };
+        case "FIND_TOPICS":
+            return {
+                ...state,
+                topics: action.topics
+            }
         case "CREATE_TOPIC_FOR_LESSON":
             return {
                 ...state,

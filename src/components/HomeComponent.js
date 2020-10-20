@@ -99,7 +99,6 @@ const HomeComponent = () =>
             </div>
         </div>
 
-
     </div>
 
 export default HomeComponent

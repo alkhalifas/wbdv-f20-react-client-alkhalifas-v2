@@ -34,6 +34,7 @@ class CourseEditorComponent extends React.Component {
 
     }
 
+    //pulling into a usable variable
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
         const lessonId = this.props.match.params.lessonId
@@ -42,6 +43,8 @@ class CourseEditorComponent extends React.Component {
         if(moduleId !== prevProps.match.params.moduleId) {
             this.props.findLessonsForModule(moduleId)
         }
+
+        //Causes Lessons to have topics
         if(lessonId !== prevProps.match.params.lessonId) {
             this.props.findTopicsForLesson(lessonId)
         }
@@ -88,14 +91,14 @@ const stateToPropertyMapper = (state) => ({
 
 const propertyToDispatchMapper = (dispatch) => ({
     findCourseById: (courseId) => findCourseById(courseId)
-        .then(actualCourse => dispatch({
+        .then(courses => dispatch({
                                            type: "SET_COURSES",
-                                           course: actualCourse
+                                           course: courses
                                        })),
     findModulesForCourse: (courseId) => moduleService.findModulesForCourse(courseId)
-        .then(actualModules => dispatch({
+        .then(modules => dispatch({
                                             type: "FIND_MODULES_FOR_COURSE",
-                                            modules: actualModules
+                                            modules: modules
                                         })),
     findLessonsForModule: (moduleId) =>
         lessonService.findLessonsForModule(moduleId)
@@ -104,12 +107,12 @@ const propertyToDispatchMapper = (dispatch) => ({
                                           lessons,
                                           moduleId
                                       })),
-    findTopicsForLesson: (lessonId) =>
-        topicService.findTopicsForLesson(lessonId)
+    findTopicsForLesson: (lessonId, topicId) =>
+        topicService.findTopicsForLesson(lessonId, topicId)
             .then(topics => dispatch({
                                           type: "FIND_TOPICS_FOR_LESSON",
                                           topics,
-                                          lessonId
+                                          lessonId, topicId
                                       }))
 })
 

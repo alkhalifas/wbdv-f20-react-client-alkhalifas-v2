@@ -9,7 +9,7 @@ const TopicPillsComponent = (
         moduleId,
         lessonId,
         topics=[],
-
+        topicId,
         createTopic,
         deleteTopic,
         updateTopic,
@@ -21,20 +21,52 @@ const TopicPillsComponent = (
         <h6>Course._id ({course._id})</h6>
         <h6>ModuleId ({moduleId})</h6>
         <h6>LessonId ({lessonId})</h6>
+        <h6>topicId ({topicId})</h6>
 
         <ul className="nav nav-pills ">
             {
                 topics.map(topic =>
                                <li key={topic._id}
                                    className="nav-item border rounded m-2">
-
                                    <a className="nav-link" data-toggle="tab">
-                                       {topic.title}
-                                        <button
-                                            className="btn btn-light btn-sm"
-                                            onClick={() => deleteTopic(topic._id)}>
-                                            <i className="fas fa-trash-alt"></i>
-                                        </button>
+                                       {
+                                           !topic.editing &&
+                                           <span>
+                                               <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}>
+                                                    {topic.title}
+                                                </Link>
+                                               <button
+                                                   className="btn btn-light btn-sm"
+                                                   onClick={() => editTopic(topic)}>
+                                                <i className="far fa-edit"></i>
+                                                </button>
+                                           </span>
+                                       }
+                                       {
+                                           topic.editing &&
+                                           <span>
+                                                <input
+                                                    onChange={(event) => updateTopic({
+                                                                                          ...topic,
+                                                                                          title: event.target.value
+                                                                                      })}
+                                                    value={topic.title}/>
+
+                                                <button
+                                                    className="btn btn-light btn-sm"
+                                                    onClick={() => okTopic(topic)}>
+                                                    <i className="fa fa-check"></i>
+                                                </button>
+                                                <button
+                                                    className="btn btn-light btn-sm"
+                                                    onClick={() => deleteTopic(topic._id)}>
+                                                    <i className="fas fa-trash-alt"></i>
+                                                 </button>
+                                           </span>
+
+                                       }
+
+
                                    </a>
                                </li>
                 )
@@ -58,6 +90,7 @@ const TopicPillsComponent = (
 
 const stateToPropertyMapper = (state) => ({
     topics: state.topicReducer.topics,
+    topicId: state.topicReducer.topicId,
     lessons: state.topicReducer.lessons,
     lessonId: state.topicReducer.lessonId,
     moduleId: state.lessonReducer.moduleId,
@@ -109,7 +142,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
             .then(actualTopic => {
                 dispatch({
                              type: "CREATE_TOPIC_FOR_LESSON",
-                             lesson: actualTopic
+                             topic: actualTopic
                          })
             })
     }
