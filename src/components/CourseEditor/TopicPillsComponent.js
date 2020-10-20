@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import TopicService from "../../services/TopicService";
 import {Link} from "react-router-dom";
+import { useLocation } from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 
 const TopicPillsComponent = (
 
@@ -28,6 +30,7 @@ const TopicPillsComponent = (
 
         <ul className="nav nav-pills ">
             {
+
                 topics.map(topic =>
                                <li key={topic._id}
                                    className="nav-item border rounded m-2">
@@ -81,7 +84,6 @@ const TopicPillsComponent = (
                         className="btn btn-light btn-sm"
                         onClick={() => createTopic(lessonId)}>
                           +
-                        {console.log("Topic Added!")}
                     </button>
                 </a>
 

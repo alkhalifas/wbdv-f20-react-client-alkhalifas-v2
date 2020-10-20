@@ -1,15 +1,15 @@
 import React from "react";
 import {BrowserRouter, Route, Link} from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import Profile from "./Profile";
-import CourseListComponent from "./CourseListComponent";
-import CourseEditorComponent from "./CourseEditor/CourseEditorComponent";
-import CourseGrid from "./CourseGrid";
-import CourseGridComponent from "./CourseGridComponent";
-import HomeComponent from "./HomeComponent";
+import Login from "../components/Login";
+import Register from "../components/Register";
+import Profile from "../components/Profile";
+import CourseListComponent from "../components/CourseListComponent";
+import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
+import CourseGrid from "../components/CourseGrid";
+import CourseGridComponent from "../components/CourseGridComponent";
+import HomeComponent from "../components/HomeComponent";
 
-export class CourseManagerComponent extends React.Component {
+export class CourseManagerContainer extends React.Component {
     state = {
         courses: [],
         layout: "table"

@@ -16,7 +16,7 @@ const LessonsTabComponent = (
         okLesson
     }) =>
     <div>
-        <h1>Lessons ({moduleId})</h1>
+        <h1>Lessons:</h1>
         <ul className="nav nav-tabs">
             {
                 lessons.map(lesson =>

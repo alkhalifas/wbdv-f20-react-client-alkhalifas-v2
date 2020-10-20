@@ -6,7 +6,7 @@ import App from './App';
 import CourseListComponent from "./components/CourseEditor/CourseEditorComponent";
 import * as serviceWorker from './serviceWorker';
 import CourseEditorComponent from "./components/CourseEditor/CourseEditorComponent";
-import {CourseManagerComponent} from "./components/CourseManagerComponent";
+import {CourseManagerContainer} from "./containers/CourseManagerContainer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import fsm from "./reducers/fsm"
@@ -24,7 +24,7 @@ const store = createStore(reducers)
 
 ReactDOM.render(
     <Provider store={store}>
-        <CourseManagerComponent/>
+        <CourseManagerContainer/>
     </Provider>,
     document.getElementById('root')
 );

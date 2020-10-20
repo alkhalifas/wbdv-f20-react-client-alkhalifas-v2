@@ -25,6 +25,10 @@ class CourseEditorComponent extends React.Component {
         this.props.findLessonsForModule(moduleId);
         this.props.findTopicsForLesson(lessonId);
 
+        if(courseId) {
+            this.props.findCourseById(courseId);
+        }
+
         if(moduleId) {
             this.props.findLessonsForModule(moduleId);
             this.props.findTopicsForLesson(lessonId)
