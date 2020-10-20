@@ -15,6 +15,19 @@ export default class CourseRowComponent extends React.Component {
             <tr>
                 <td>
 {/*//------------------------------------------- Course Title -------------------------------------//*/}
+{/*                    {*/}
+{/*                        this.state.editing &&*/}
+{/*                        <input*/}
+{/*                            className="form-control"*/}
+{/*                            onChange={(event) => {*/}
+{/*                                const newTitle = event.target.value*/}
+{/*                                this.setState(prevState => ({*/}
+{/*                                    course: {...prevState.course, title: newTitle}*/}
+{/*                                }))}*/}
+{/*                            }*/}
+{/*                            value={this.state.course.title}/>*/}
+{/*                    }*/}
+
                     {
                         this.state.editing &&
                         <input

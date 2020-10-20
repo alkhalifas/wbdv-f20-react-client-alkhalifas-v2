@@ -74,7 +74,22 @@ class CourseGridComponent extends React.Component {
                                                        course={course}/>
                             )
                     }
+                    <div className="card text-muted bg-light mb-3 col-lg-2 col-md-4 col-sm-12 m-3" >
+                        <div className="text-center">
+                            <i style={{color: 'black'}} className="fas fa-8x fa-file-alt m-2 text-black-50"></i>
+                        </div>
+                        <button
+                            onClick={this.addCourse}
+                            className="btn ">
+                            <i style={{color: 'black'}} className="fas fa-4x fa-plus-circle m-2 text-black-50"></i>
+                        </button>
+                    </div>
+
+
+
+
                 </div>
+
             </div>
 
 

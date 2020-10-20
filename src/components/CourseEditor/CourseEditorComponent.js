@@ -19,6 +19,7 @@ class CourseEditorComponent extends React.Component {
         const lessonId = this.props.match.params.lessonId;
         const topicId = this.props.match.params.topicId;
 
+
         this.props.findCourseById(courseId);
         this.props.findModulesForCourse(courseId);
         this.props.findLessonsForModule(moduleId);
@@ -34,6 +35,10 @@ class CourseEditorComponent extends React.Component {
 
     }
 
+    state = {
+        tempTopicId : this.props.match.params.topidId,
+    }
+
     //pulling into a usable variable
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
@@ -47,6 +52,7 @@ class CourseEditorComponent extends React.Component {
         //Causes Lessons to have topics
         if(lessonId !== prevProps.match.params.lessonId) {
             this.props.findTopicsForLesson(lessonId)
+            {console.log("DebugID", topicId + "")}
         }
 
 
@@ -77,7 +83,8 @@ class CourseEditorComponent extends React.Component {
                     </div>
                     <div className="col-8">
                         <LessonTabs/>
-                        <TopicPillsComponent/>
+                        <TopicPillsComponent
+                            tempTopicId = {this.state.tempTopicId}/>
                     </div>
                 </div>
             </div>

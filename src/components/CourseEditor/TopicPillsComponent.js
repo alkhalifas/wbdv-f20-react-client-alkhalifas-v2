@@ -4,12 +4,15 @@ import TopicService from "../../services/TopicService";
 import {Link} from "react-router-dom";
 
 const TopicPillsComponent = (
+
+    //comes from redux store
     {
         course = {},
         moduleId,
         lessonId,
         topics=[],
         topicId,
+        tempTopicId,
         createTopic,
         deleteTopic,
         updateTopic,
@@ -18,10 +21,10 @@ const TopicPillsComponent = (
     }) =>
     <div>
         <h1>Topics:</h1>
-        <h6>Course._id ({course._id})</h6>
-        <h6>ModuleId ({moduleId})</h6>
-        <h6>LessonId ({lessonId})</h6>
-        <h6>topicId ({topicId})</h6>
+        {/*<h6>Course._id ({course._id})</h6>*/}
+        {/*<h6>ModuleId ({moduleId})</h6>*/}
+        {/*<h6>LessonId ({lessonId})</h6>*/}
+        {/*<h6>topicId ({tempTopicId})</h6>*/}
 
         <ul className="nav nav-pills ">
             {
