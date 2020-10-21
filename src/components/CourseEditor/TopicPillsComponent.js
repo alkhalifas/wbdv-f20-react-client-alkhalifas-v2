@@ -42,7 +42,7 @@ const TopicPillsComponent = (
                                                     {topic.title}
                                                 </Link>
                                                <button
-                                                   className="btn btn-light btn-sm"
+                                                   className="btn btn-light btn-sm ml-1"
                                                    onClick={() => editTopic(topic)}>
                                                 <i className="far fa-edit"></i>
                                                 </button>

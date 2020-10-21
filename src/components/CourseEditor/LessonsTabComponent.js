@@ -32,7 +32,7 @@ const LessonsTabComponent = (
                                                 </Link>
 
                                                 <button
-                                                    className="btn btn-light btn-sm"
+                                                    className="btn btn-light btn-sm ml-1"
                                                     onClick={() => editLesson(lesson)}>
                                                 <i className="far fa-edit"></i>
                                                 </button>
