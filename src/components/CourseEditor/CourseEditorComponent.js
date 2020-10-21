@@ -59,9 +59,9 @@ class CourseEditorComponent extends React.Component {
             {console.log("DebugID", topicId + "")}
         }
 
-
-
-
+        if(topicId !== prevProps.match.params.topicId) {
+            this.props.findWidgetsForTopic(topicId)
+        }
     }
 
     render() {
@@ -124,7 +124,14 @@ const propertyToDispatchMapper = (dispatch) => ({
                                           type: "FIND_TOPICS_FOR_LESSON",
                                           topics,
                                           lessonId, topicId
-                                      }))
+                                      })),
+
+    //move to widget reducer later
+    findWidgetsForTopic: (topicId) => {
+        dispatch ({
+            type : "FIND_WIDGETS_FOR_TOPICS",
+            topicId
+    })}
 })
 
 export default connect
