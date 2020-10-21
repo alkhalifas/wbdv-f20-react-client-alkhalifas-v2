@@ -1,154 +1,95 @@
-import React from "react"
-import CourseTableComponent from "../components/CourseTableComponent";
-import CourseGridComponent from "../components/CourseGridComponent";
-import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService" //destructor// syntax
-import './CourseManagerContainer.css'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import React from "react";
+import {BrowserRouter, Route, Link} from "react-router-dom";
+import Login from "../components/Login";
+import Register from "../components/Register";
+import Profile from "../components/Profile";
 import CourseListComponent from "../components/CourseListComponent";
-import Login from "../components/login";
+import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
+import CourseGrid from "../components/CourseGrid";
+import CourseGridComponent from "../components/CourseGridComponent";
+import HomeComponent from "../components/HomeComponent";
 
-
-class CourseManagerContainer extends React.Component {
-    //Utilizing class instead of function because we need to maintain state
-
+export class CourseManagerContainer extends React.Component {
     state = {
-        layout: 'table',
-        showEditor: false,
-        newCourseTitle: '',
-        courses: []
-    };
-
-    // componentDidMount() {
-    //     findAllCourses()
-    //         .then(courses => this.setState({
-    //             courses: courses
-    //                                        }))
-    // }
-
-    // Alternative method using asynchronous methodology
-    // easier to read, more natural
-    componentDidMount = async () => {
-        const courses = await findAllCourses()
-        this.setState({
-                          courses: courses
-                      })
-    };
-
-    toggle = () =>
-        this.setState(prevState => {
-            if (prevState.layout === 'table') {
-                return ({
-                    layout: 'grid'
-                })
-            } else {
-                return ({
-                    layout: 'table'
-                })
-            }
-        });
-
-    deleteCourse = (course) =>
-
-        deleteCourse(course._id)
-            .then(status => {
-                this.setState(prevState => {
-                    return ({
-                        courses: prevState
-                            .courses
-                            .filter(function (crs) {
-                                return crs._id !== course._id
-                            })
-                    })
-                })
-            });
-
-    addCourse = () =>
-        createCourse({
-                         title: this.state.newCourseTitle
-                     }).then(actualCourse => this.setState(prevState => {
-                                 return ({
-                                     courses: [
-                                         ...prevState.courses,
-                                         actualCourse
-                                     ] //spread operator that combines old array with new one
-
-                                 })
-                             })
-        );
-
-    showEditor = () =>
-        this.setState({
-                          showEditor: true
-                      });
-
-    hideEditor = () =>
-        this.setState({
-                          showEditor: false
-                      });
-
-    updateForm = (e) =>
-        this.setState({
-                          newCourseTitle: e.target.value
-                      });
-
+        courses: [],
+        layout: "table"
+    }
     render() {
         return (
-            <div className="container">
+            <BrowserRouter>
+                <div className="container">
+                    <nav
+                        className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark wbdv-field wbdv-hamburger">
+                        <a className="navbar-brand" href="#"><h3>Whiteboard</h3></a>
+                        <button aria-controls="navbarText" aria-expanded="false"
+                                aria-label="Toggle navigation" className="navbar-toggler"
+                                data-target="#navbarText" data-toggle="collapse" type="button">
 
-                <Router>
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarText">
+                            <ul className="navbar-nav mr-auto">
+                                <Link to="/" className="mr-2 text-white">Home </Link>
+                                <Link to="/login" className="mr-2 text-white">Login </Link>
+                                <Link to="/register" className="mr-2 text-white">Register </Link>
+                                <Link to="/profile" className="mr-2 text-white">Profile </Link>
+                                <Link to="/table" className="mr-2 text-white">Course Manager</Link>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div>
+                        <h1> </h1>
+                        <h1>" "</h1>
+
+                    </div>
+                    {/*<Link to="/login">Login</Link> |*/}
+                    {/*<Link to="/register">Register</Link> |*/}
+                    {/*<Link to="/profile">Profile</Link> |*/}
+                    {/*<Link to="/table">Courses</Link> |*/}
+                    {/*<Link to="/grid">Grid</Link> |*/}
+                    {/*<Link to="/edit">Editor</Link>*/}
+                    <Route path="/" exact component={HomeComponent}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/register" exact component={Register}/>
+                    <Route path="/profile" exact component={Profile}/>
+                    <Route path="/table" exact>
+                        <CourseListComponent courses={this.state.courses} instructor="Saleh Alkhalifa"/>
+                    </Route>
+                    <Route path="/grid" exact>
+                        <CourseGridComponent courses={this.state.courses} instructor="Saleh Alkhalifa"/>
+                    </Route>
 
                     <Route
-                        path="/"
-                        exact={true}
-                        render={() =>
-                            <div>
-                                <h1>Home</h1>
-                                <Link to="/home">Home</Link>
-                                <Link to="/login">Login</Link>
-                                <Link to="/register">Register</Link>
-                                <Link to="/courses">Courses</Link>
-                            </div>
-
-                        }
-                    />
-
-                    <Route
-                        path="/login"
-                        exact component={Login}/>
+                        path={["/edit/:courseId",
+                               "/edit/:courseId/modules/:moduleId",
+                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                               "/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
+                        ]}
+                        exact
+                        component={CourseEditorComponent}/>
 
 
-                    <Route
-                        path="/courses"
-                        exact={true}
-                        render={() =>
-                            <CourseListComponent
-                                toggle={this.toggle}
-                                updateForm={this.updateForm}
-                                newCourseTitle={this.state.newCourseTitle}
-                                addCourse={this.addCourse}
-                                layout={this.state.layout}
-                                showEditor={this.showEditor}
-                                deleteCourse={this.deleteCourse}
-                                courses={this.state.courses}
-                            />
-                        }/>
 
-                    <Route
-                        path="/course-editor/:courseId"
-                        exact={true}
-                        render={(props) =>
-                            <CourseEditorComponent
-                                courseId={props.match.params.courseId}
-                                {...props}/>
-                        }/>
+                    {/*<Route*/}
+                    {/*    exact={true}*/}
+                    {/*    path="/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"*/}
+                    {/*    render={(props) => (*/}
+                    {/*        <CourseEditorComponent*/}
+                    {/*            courseID={props.match.params.courseID}*/}
+                    {/*            moduleID={props.match.params.moduleID}*/}
+                    {/*            lessonID={props.match.params.lessonID}*/}
+                    {/*            topicId={props.match.params.topicId}*/}
+                    {/*        />*/}
+                    {/*    )}*/}
+                    {/*/>*/}
 
 
-                </Router>
 
-            </div>
-        )
+
+
+
+                </div>
+            </BrowserRouter>
+        );
     }
 }
-
-export default CourseManagerContainer

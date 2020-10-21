@@ -1,42 +1,132 @@
 import React from "react";
+import {findCourseById} from "../../services/CourseService";
+import WidgetListContainer from "../../containers/WidgetListContainer";
+import WidgetList from "../WidgetList";
 import ModuleListComponent from "./ModuleListComponent";
-import LessonTabsComponent from "./LessonTabsComponent";
+import {connect} from "react-redux";
+import moduleService from "../../services/ModuleService"
+import lessonService from "../../services/LessonService"
+import LessonTabs from "./LessonsTabComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
-import WidgetComponent from "./WidgetComponent";
-const CourseEditorComponent = ({hideEditor, match, courseId}) =>
+import topicService from "../../services/TopicService";
+import {Link} from "react-router-dom";
 
-    <div>
-        <div className="row container mb-4">
+class CourseEditorComponent extends React.Component {
+
+    componentDidMount() {
+        const courseId = this.props.match.params.courseId;
+        const moduleId = this.props.match.params.moduleId;
+        const lessonId = this.props.match.params.lessonId;
+        const topicId = this.props.match.params.topicId;
+
+
+        this.props.findCourseById(courseId);
+        this.props.findModulesForCourse(courseId);
+        this.props.findLessonsForModule(moduleId);
+        this.props.findTopicsForLesson(lessonId);
+
+        if(courseId) {
+            this.props.findCourseById(courseId);
+        }
+
+        if(moduleId) {
+            this.props.findLessonsForModule(moduleId);
+            this.props.findTopicsForLesson(lessonId)
+        }
+        if(lessonId) {
+            this.props.findTopicsForLesson(lessonId)
+        }
+
+    }
+
+    state = {
+        tempTopicId : this.props.match.params.topidId,
+    }
+
+    //pulling into a usable variable
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const moduleId = this.props.match.params.moduleId
+        const lessonId = this.props.match.params.lessonId
+        const topicId = this.props.match.params.topicId
+
+        if(moduleId !== prevProps.match.params.moduleId) {
+            this.props.findLessonsForModule(moduleId)
+        }
+
+        //Causes Lessons to have topics
+        if(lessonId !== prevProps.match.params.lessonId) {
+            this.props.findTopicsForLesson(lessonId)
+            {console.log("DebugID", topicId + "")}
+        }
+
+
+
+
+    }
+
+    render() {
+        return(
             <div>
-                <a className="btn btn-light mr-2 mt-2" href={"/courses"}>
-                    <i className="fas fa-backspace"></i>
-                </a>
-            </div>
-
-            <h1>Course Editor:  {match.params.courseId}</h1>
-
-        </div>
-            <div className="row">
-                <div className="col-4 list-group">
-                    <ModuleListComponent
-                        modules={[
-                            {_id: "123", title: "CSS"},
-                            {_id: "234", title: "HTML"},
-                            {_id: "345", title: "React"},
-                            {_id: "456", title: "Angular"},
-                            {_id: "567", title: "Python"},
-                            {_id: "678", title: "Java"},
-                            {_id: "789", title: "JavaScript"}
-                        ]}/>
+                <div className="row">
+                    <h1>Course Editor</h1>
+                    <button className="btn btn-lg">
+                        <Link to="/table" className="text-black-50">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                 className="bi bi-x-square-fill" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                        </Link>
+                    </button>
                 </div>
-                <div className="col-8">
-                    <LessonTabsComponent/>
-                    <TopicPillsComponent/>
-                    {/*<WidgetComponent/>*/}
+
+                <div className="row">
+                    <div className="col-4">
+                        <ModuleListComponent/>
+                    </div>
+                    <div className="col-8">
+                        <LessonTabs/>
+                        <TopicPillsComponent
+                            tempTopicId = {this.state.tempTopicId}/>
+                    </div>
                 </div>
             </div>
+        )
+    }
+}
 
-    </div>
+const stateToPropertyMapper = (state) => ({
+    course: state.courseReducer.course
+})
 
+const propertyToDispatchMapper = (dispatch) => ({
+    findCourseById: (courseId) => findCourseById(courseId)
+        .then(courses => dispatch({
+                                           type: "SET_COURSES",
+                                           course: courses
+                                       })),
+    findModulesForCourse: (courseId) => moduleService.findModulesForCourse(courseId)
+        .then(modules => dispatch({
+                                            type: "FIND_MODULES_FOR_COURSE",
+                                            modules: modules
+                                        })),
+    findLessonsForModule: (moduleId) =>
+        lessonService.findLessonsForModule(moduleId)
+            .then(lessons => dispatch({
+                                          type: "FIND_LESSONS_FOR_MODULE",
+                                          lessons,
+                                          moduleId
+                                      })),
+    findTopicsForLesson: (lessonId, topicId) =>
+        topicService.findTopicsForLesson(lessonId, topicId)
+            .then(topics => dispatch({
+                                          type: "FIND_TOPICS_FOR_LESSON",
+                                          topics,
+                                          lessonId, topicId
+                                      }))
+})
 
-export default CourseEditorComponent
+export default connect
+(stateToPropertyMapper, propertyToDispatchMapper)
+(CourseEditorComponent)

@@ -1,56 +1,103 @@
-import CourseTableComponent from "./CourseTableComponent";
 import React from "react";
-import CourseEditorComponent from "./CourseEditor/CourseEditorComponent";
-import CourseGridComponent from "./CourseGridComponent";
+import CourseRowComponent from "./CourseRowComponent";
+import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
+
+class CourseListComponent extends React.Component {
+
+    state = {
+        courses: [],
+        courseBeingEdited: {}
+    }
+
+    componentDidMount() {
+        findAllCourses()
+            .then(courses => {
+                this.setState({
+                                  courses: courses
+                              })
+            })
+    }
+
+    deleteCourse = (course) => {
+        deleteCourse(course._id)
+            .then(status => this.setState(prevState =>({
+                                              courses: prevState.courses.filter(c => c._id !== course._id)
+                                          })
+            ))
+            .catch(error => {
+
+            })
+    }
+
+    addCourse = () => {
+        const newCourse = {
+            title: "New Course Title Here",
+            owner: "me",
+            modified: (new Date()).toDateString()
+        }
+
+        createCourse(newCourse)
+            .then(actualCourse => this.setState(prevState => ({
+                courses: [
+                    ...prevState.courses, actualCourse
+                ]
+            })))
+    }
+
+    editCourse = (course) => {
+        this.setState({
+                          courseBeingEdited: course
+                      })
+    };
+
+    render() {
+        return (
+            <div >
+                <div className="row">
+                    <div className= "col-11">
+                        <h1>Course List For <i>{this.props.instructor}</i></h1>
+                    </div>
+                    <div className="float-right mt-3 col-1">
+                        <button className="btn btn-light">
+                            <Link to="/grid"><i className="fas fa-th"></i></Link></button>
+                    </div>
+
+                </div>
 
 
-const CourseListComponent =
-    ({
-         toggle,
-         deleteCourse,
-         addCourse,
-         showEditor,
-         hideEditor,
-         newCourseTitle,
-         layout,
-         updateForm,
-         courses
-     }) =>
-       <div>
-           <div className="row">
-                   <div className="col-4">
-                       <h1>Course List</h1>
-                   </div>
-                   <div className="col-6 align-middle mt-2">
-                       <input
-                              className="search-query form-control"
-                              placeholder="Enter New Course Here"
-                              onChange={updateForm} //raw event handler
-                              value={newCourseTitle}/>
-                   </div>
-                   <div>
-                       <button className="btn pull-right float-right" onClick={addCourse}>
-                           <i aria-hidden="true"
-                              className="fa fa-plus-circle fa-2x d-block float-right pull-right"></i>
-                       </button>
-                   </div>
-               <div className="float-right mt-1">
-                   <button
-                       type="button"
-                       className="btn btn-light float-right" onClick={toggle}>
-                       <i className="fas fa-th-list"></i>
-                   </button>
-               </div>
-           </div>
+                <table className="table table-hover container">
+                    <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Owner</th>
+                        <th>Last Edited</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.state.courses.map(course =>
+                                                   <CourseRowComponent
+                                                       key={course._id}
+                                                       deleteCourse={this.deleteCourse}
+                                                       course={course}/>
+                        )
+                    }
+                    </tbody>
+                </table>
+                <button
+                    onClick={this.addCourse}
+                    className="btn btn-success">
+                    Add Course
+                </button>
+            </div>
 
-           {layout === 'table' &&
-            <CourseTableComponent
-                showEditor={showEditor}
-                deleteCourse={deleteCourse}
-                courses={courses}/>}
-           {layout === 'grid' &&
-            <CourseGridComponent showEditor={showEditor}
-                                 deleteCourse={deleteCourse}
-                                 courses={courses}/>}
-       </div>
+
+        );
+    }
+}
+
 export default CourseListComponent

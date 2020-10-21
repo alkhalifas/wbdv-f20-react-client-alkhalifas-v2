@@ -1,50 +1,35 @@
-import {API_URL_COURSES} from "../constants"; //destructor syntax
+const url = "https://wbdv-generic-server.herokuapp.com/api/alkhalifas/courses"
 
-// export const findAllCourses = () =>
-//     fetch(API_URL_COURSES)
-//         .then(response => response.json())
+export const findCourseById = (courseId) =>
+    fetch(`${url}/${courseId}`)
+        .then(response => response.json())
 
-//Explicit return using different syntax, easier to read
-export const findAllCourses = async () => {
-    const response = await fetch(API_URL_COURSES);
-    return await response.json()
-};
+export const findAllCourses = () =>
+    fetch(url)
+        .then(response => response.json())
 
-// export const deleteCourse = (courseId) =>
-//     fetch(`${API_URL_COURSES}/${courseId}`, {method: 'DELETE'})
-//         .then(response => response.json());
-
-//Explicit return using different syntax, easier to read
-export const deleteCourse = async (courseId) =>{
-    const response = await fetch(`${API_URL_COURSES}/${courseId}`,
-                         {method: 'DELETE'})
-        return await response.json();
-};
-
-export const createCourse = (course) =>
-    fetch(API_URL_COURSES, {
+export const createCourse = (newCourse) =>
+    fetch(url, {
         method: 'POST',
-        body: JSON.stringify(course),
+        body: JSON.stringify(newCourse),
         headers: {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json());
+        .then(response => response.json())
 
-export const updateCourse = async (courseId, course) => {
-    const response = await fetch(`${API_URL_COURSES}/${courseId}`, {
+export const deleteCourse = (courseId) =>
+    fetch(`${url}/${courseId}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+
+export const updateCourse = (courseId, newCourse) =>
+    fetch(`${url}/${courseId}`, {
         method: 'PUT',
-        body: JSON.stringify(course),
+        body: JSON.stringify(newCourse),
         headers: {
             'content-type': 'application/json'
         }
-    });
-    return await response.json()
-};
-
-export const findCourseById = async (courseId) => {
-    const response = await fetch(`${API_URL_COURSES}/${courseId}`)
-    return await response.json();
-};
-
-
+    })
+        .then(response => response.json())
