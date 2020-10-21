@@ -23,6 +23,11 @@ export const topicReducer = (state=initialState, action) => {
                 topicId: action.topicId
 
             };
+        case "FIND_WIDGETS_FOR_TOPICS":
+            return {
+                ...state,
+                topicId: action.topicId
+            }
 
         case "FIND_TOPICS":
             return {

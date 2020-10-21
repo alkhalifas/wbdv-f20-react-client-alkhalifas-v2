@@ -14,7 +14,7 @@ const TopicPillsComponent = (
         lessonId,
         topics=[],
         topicId,
-        tempTopicId,
+        // tempTopicId,
         createTopic,
         deleteTopic,
         updateTopic,
@@ -26,7 +26,7 @@ const TopicPillsComponent = (
         {/*<h6>Course._id ({course._id})</h6>*/}
         {/*<h6>ModuleId ({moduleId})</h6>*/}
         {/*<h6>LessonId ({lessonId})</h6>*/}
-        {/*<h6>topicId ({tempTopicId})</h6>*/}
+        <h6>topicId ({topicId})</h6>
 
         <ul className="nav nav-pills ">
             {
@@ -34,11 +34,13 @@ const TopicPillsComponent = (
                 topics.map(topic =>
                                <li key={topic._id}
                                    className="nav-item border rounded m-2">
-                                   <a className="nav-link" data-toggle="tab">
+                                   <a className={`nav-link ${topicId === topic._id?'active':''}`}
+                                      data-toggle="tab">
                                        {
                                            !topic.editing &&
                                            <span>
-                                               <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}>
+                                               <Link className={`m-0  ${topicId === topic._id?'text-white ':''}`}
+                                                   to={`/edit/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}>
                                                     {topic.title}
                                                 </Link>
                                                <button
