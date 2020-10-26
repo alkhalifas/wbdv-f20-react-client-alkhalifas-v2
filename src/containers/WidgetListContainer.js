@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import WidgetList from "../components/WidgetList";
+import WidgetList from "../components/CourseEditor/WidgetListComponent";
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgetsReducer.widgets

@@ -1,7 +1,7 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
 import WidgetListContainer from "../../containers/WidgetListContainer";
-import WidgetList from "../WidgetList";
+import WidgetList from "./WidgetListComponent";
 import ModuleListComponent from "./ModuleListComponent";
 import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
@@ -9,6 +9,7 @@ import lessonService from "../../services/LessonService"
 import LessonTabs from "./LessonsTabComponent";
 import TopicPillsComponent from "./TopicPillsComponent";
 import topicService from "../../services/TopicService";
+import WidgetService from "../../services/WidgetService";
 import {Link} from "react-router-dom";
 
 class CourseEditorComponent extends React.Component {
@@ -36,12 +37,12 @@ class CourseEditorComponent extends React.Component {
         if(lessonId) {
             this.props.findTopicsForLesson(lessonId)
         }
-
+        this.props.findAllWidgets()
     }
 
-    state = {
-        tempTopicId : this.props.match.params.topidId,
-    }
+    // state = {
+    //     tempTopicId : this.props.match.params.topidId,
+    // }
 
     //pulling into a usable variable
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -87,8 +88,8 @@ class CourseEditorComponent extends React.Component {
                     </div>
                     <div className="col-8">
                         <LessonTabs/>
-                        <TopicPillsComponent
-                            tempTopicId = {this.state.tempTopicId}/>
+                        <TopicPillsComponent/>
+                        <WidgetList/>
                     </div>
                 </div>
             </div>
@@ -118,12 +119,12 @@ const propertyToDispatchMapper = (dispatch) => ({
                                           lessons,
                                           moduleId
                                       })),
-    findTopicsForLesson: (lessonId, topicId) =>
-        topicService.findTopicsForLesson(lessonId, topicId)
+    findTopicsForLesson: (lessonId) =>
+        topicService.findTopicsForLesson(lessonId)
             .then(topics => dispatch({
                                           type: "FIND_TOPICS_FOR_LESSON",
                                           topics,
-                                          lessonId, topicId
+                                          lessonId
                                       })),
 
     //move to widget reducer later
@@ -131,7 +132,15 @@ const propertyToDispatchMapper = (dispatch) => ({
         dispatch ({
             type : "FIND_WIDGETS_FOR_TOPICS",
             topicId
-    })}
+    })},
+
+    findAllWidgets: () =>
+        WidgetService.findAllWidgets()
+            .then(widgets => dispatch({
+                                          type: "FIND_ALL_WIDGETS",
+                                          widgets
+                                      })),
+
 })
 
 export default connect
