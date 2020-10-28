@@ -14,6 +14,11 @@ const createWidget = () =>
     })
         .then(response => response.json())
 
+export const deleteWidget = widget =>
+    fetch(`${WIDGET_URL}/${widget.id}`,{
+        method: "DELETE"
+    }).then(response => response.json())
+
 export default {
-    findAllWidgets, createWidget
+    findAllWidgets, createWidget, deleteWidget
 }
