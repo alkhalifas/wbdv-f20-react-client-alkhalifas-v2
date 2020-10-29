@@ -2,11 +2,17 @@ import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET} from "../actions/widgetActi
 
 const initialState = {
     widgets: []
-
 }
 
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "FIND_WIDGETS_FOR_TOPIC":
+        {console.log("1029~~~~~~~~HELP:", action.widgets)}
+            return {
+                ...state,
+                widgets: action.widgets,
+                topicId: action.topicId
+            }
         case "FIND_ALL_WIDGETS":
             return {
                 ...state,

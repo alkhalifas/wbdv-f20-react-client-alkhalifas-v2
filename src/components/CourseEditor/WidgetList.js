@@ -6,8 +6,10 @@ import {
     updateWidget,
     editWidget,
     okWidget} from "../../actions/widgetActions";
+import HeadingWidget from "./widgets/HeadingWidget";
+import ParagraphWidget from "./widgets/ParagraphWidget";
 
-const WidgetListComponent = ({
+const WidgetList = ({
                         widgets=[],
                         deleteWidget,
                         createWidget,
@@ -16,16 +18,13 @@ const WidgetListComponent = ({
                         okWidget}) =>
     <div>
         <h1>Widgets!!!</h1>
+        {console.log("~~~~ HERE", widgets)}
+        { widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}
         <ul>
             {
-                widgets.map(widget =>
+               widgets.map(widget =>
                                 <li key={widget.id}>
-                                    <div className="container border rounded p-2 m-2">
-                                        <div className="row m-2">
-                                            <h4>{widget.type}:</h4>
-                                            </div>
-
-                                    </div>
+                                    {widget.name}
                                 </li>
                 )
             }
@@ -33,10 +32,10 @@ const WidgetListComponent = ({
         <button onClick={createWidget}>Create</button>
     </div>
 
-// export default WidgetListComponent
+// export default WidgetList
 
 const stateToPropertyMapper = (state) => ({
-    widgets: state.widgetsReducer.widgets
+    widgets: state.widgetReducer.widgets
 })
 
 const propertyToDispatchMapper = (dispatch) => ({
@@ -50,4 +49,4 @@ const propertyToDispatchMapper = (dispatch) => ({
 export default connect
 ( stateToPropertyMapper,
   propertyToDispatchMapper)
-(WidgetListComponent)
+(WidgetList)

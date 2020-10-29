@@ -1,7 +1,6 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
-import WidgetListContainer from "../../containers/WidgetListContainer";
-import WidgetList from "./WidgetListComponent";
+import WidgetList from "./WidgetList";
 import ModuleListComponent from "./ModuleListComponent";
 import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
@@ -37,7 +36,11 @@ class CourseEditorComponent extends React.Component {
         if(lessonId) {
             this.props.findTopicsForLesson(lessonId)
         }
-        this.props.findAllWidgets()
+
+        if(topicId) {
+            this.props.findWidgetsForTopic(topicId)
+        }
+        // this.props.findAllWidgets()
     }
 
     // state = {
@@ -61,6 +64,9 @@ class CourseEditorComponent extends React.Component {
         }
 
         if(topicId !== prevProps.match.params.topicId) {
+            this.props.findWidgetsForTopic(topicId)
+        }
+        if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
     }
@@ -127,12 +133,20 @@ const propertyToDispatchMapper = (dispatch) => ({
                                           lessonId
                                       })),
 
-    //move to widget reducer later
-    findWidgetsForTopic: (topicId) => {
-        dispatch ({
-            type : "FIND_WIDGETS_FOR_TOPICS",
-            topicId
-    })},
+    // //move to widget reducer later
+    // findWidgetsForTopic: (topicId) => {
+    //     dispatch ({
+    //         type : "FIND_WIDGETS_FOR_TOPIC",
+    //         topicId
+    // })},
+
+    findWidgetsForTopic: (topicId) =>
+        WidgetService.findWidgetsForTopic(topicId)
+            .then(widgets => dispatch({
+                                          type: "FIND_WIDGETS_FOR_TOPIC",
+                                          widgets,
+                                          topicId,
+                                      })),
 
     findAllWidgets: () =>
         WidgetService.findAllWidgets()

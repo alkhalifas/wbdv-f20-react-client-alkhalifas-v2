@@ -20,10 +20,10 @@ export const topicReducer = (state=initialState, action) => {
                 ...state,
                 topics: action.topics,
                 lessonId: action.lessonId,
-                topicId: action.topicId
+                //topicId: action.topicId
 
             };
-        case "FIND_WIDGETS_FOR_TOPICS":
+        case "FIND_WIDGETS_FOR_TOPIC":
             return {
                 ...state,
                 topicId: action.topicId
