@@ -33,7 +33,14 @@ const createWidgetForTopic = (topicId, widget) =>
           })
         .then(response => response.json())
 
-
+export const updateWidget = (widgetId, newWidget) =>
+    fetch(`${WIDGET_URL}/${widgetId}`, {
+        method: "PUT",
+        body: JSON.stringify(newWidget),
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(response => response.json())
 
 export const deleteWidget = (widgetId) =>
     fetch(`${WIDGET_URL}/${widgetId}`, {
@@ -42,5 +49,5 @@ export const deleteWidget = (widgetId) =>
 
 
 export default {
-    findAllWidgets, createWidget, findWidgetsForTopic, createWidgetForTopic
+    findAllWidgets, createWidget, findWidgetsForTopic, createWidgetForTopic, deleteWidget
 }

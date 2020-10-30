@@ -105,7 +105,6 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
-
     okTopic: (topic) =>
         TopicService.updateTopic(topic._id, {
             ...topic, editing: false
@@ -128,6 +127,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
                                          type: "UPDATE_TOPIC",
                                          topic: topic
                                      })),
+
     deleteTopic: (topicId) =>
     {
 

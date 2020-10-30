@@ -17,9 +17,14 @@ export const okWidget = (dispatch, widget) =>
 export const updateWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget})
 
-export const deleteWidget = (dispatch, widget) =>
-    dispatch({type: DELETE_WIDGET, widget})
-
+export const deleteWidget = (dispatch, widgetId) => {
+{console.log("DELETE WIDGET ERROR", widgetId)}
+    widgetService.deleteWidget(widgetId)
+        .then(() => dispatch({
+                                 type: "DELETE_WIDGET",
+                                 widgetId
+                             }))
+}
 export const createWidget = (dispatch, topicId) =>
     widgetService.createWidget()
         .then(widget => dispatch({
@@ -28,7 +33,10 @@ export const createWidget = (dispatch, topicId) =>
                                  }))
 
 export const createWidgetForTopic = (dispatch, topicId) =>
-    widgetService.createWidgetForTopic(topicId, )
+    widgetService.createWidgetForTopic(topicId, {
+        name: "New Widget",
+        type: "PARAGRAPH",
+    })
         .then(widget => dispatch({
                                      type: "CREAT_WIDGET_FOR_TOPIC",
                                      widget

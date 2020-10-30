@@ -29,42 +29,49 @@ const WidgetList = ({
         {/*{ widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}*/}
 
         <div className="row">
-            <div className="col-9">
+            <div className="col-8">
 
             </div>
-            {/*<div className="col-2 custom-switch mt-3 mb-3 pull-right">*/}
-            {/*    <input className="custom-control-input align-middle" id="switchPrim"*/}
-            {/*           type="checkbox" onClick={() => togglePreview()/>*/}
-            {/*        <label className="pull-right custom-control-label inline-block"*/}
-            {/*               htmlFor="switchPrim">Preview</label>*/}
+
+            <button className="btn btn-danger mr-2">Save</button>
+
+            <div className="col-2 custom-switch mt-3 mb-3 pull-right">
+                <input className="custom-control-input align-middle" id="switchPrim"
+                       type="checkbox" onClick={() => changeEditing()}/>
+                    <label className="pull-right custom-control-label inline-block"
+                           htmlFor="switchPrim">Preview</label>
+            </div>
+
+
+            {/*<div className="form-check form-check-inline">*/}
+            {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
+            {/*           id="inlineRadio1" value="option1" onClick={() => changeEditing()}/>*/}
+            {/*        <label className="form-check-label" htmlFor="inlineRadio1">Editing</label>*/}
             {/*</div>*/}
-            <div className="form-check form-check-inline">
-                <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                       id="inlineRadio1" value="option1" onClick={() => changeEditing()}/>
-                    <label className="form-check-label" htmlFor="inlineRadio1">Editing</label>
-            </div>
-            <div className="form-check form-check-inline">
-                <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                       id="inlineRadio2" value="option2" onClick={() => changeEditing()}/>
-                    <label className="form-check-label" htmlFor="inlineRadio2">Preview</label>
-            </div>
+            {/*<div className="form-check form-check-inline">*/}
+            {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
+            {/*           id="inlineRadio2" value="option2" onClick={() => changeEditing()}/>*/}
+            {/*        <label className="form-check-label" htmlFor="inlineRadio2">Preview</label>*/}
+            {/*</div>*/}
         </div>
 
         {console.log("EDITING STATUS:", editing)}
 
-        <ul>
+        <ul className="list-unstyled">
             {
                 widgets.map(widget =>
                                 <li key={widget.id}>
                                     {
                                         widget.type === "HEADING" &&
                                         <HeadingWidget widget={widget}
-                                                       editing={editing}/>
+                                                       editing={editing}
+                                                       deleteWidget={deleteWidget}/>
                                     }
                                     {
                                         widget.type === "PARAGRAPH" &&
                                         <ParagraphWidget widget={widget}
-                                                         editing={editing}/>
+                                                         editing={editing}
+                                                         deleteWidget={deleteWidget}/>
                                     }
                                 </li>
                 )

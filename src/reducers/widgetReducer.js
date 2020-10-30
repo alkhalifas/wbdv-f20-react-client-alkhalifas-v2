@@ -33,9 +33,10 @@ const widgetReducer = (state = initialState, action) => {
         case UPDATE_WIDGET:
             return {
                 widgets: state.widgets.map(
-                    widget => widget._id === action.widget._id ?
+                    widget => widget.id === action.widget.id ?
                               action.widget : widget)
             };
+
         case CHANGE_EDITING:
             return {
                 ...state,
@@ -43,7 +44,7 @@ const widgetReducer = (state = initialState, action) => {
             }
         case DELETE_WIDGET:
             return {
-                widgets: state.widgets.filter(widget => widget !== action.widget)
+                widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
             }
         default:
             return state
