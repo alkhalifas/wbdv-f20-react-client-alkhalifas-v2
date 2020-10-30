@@ -16,9 +16,16 @@ export const updateWidget = (dispatch, widget) =>
 export const deleteWidget = (dispatch, widget) =>
     dispatch({type: DELETE_WIDGET, widget})
 
-export const createWidget = (dispatch) =>
+export const createWidget = (dispatch, topicId) =>
     widgetService.createWidget()
         .then(widget => dispatch({
                                      type: "CREATE_WIDGET",
+                                     widget
+                                 }))
+
+export const createWidgetForTopic = (dispatch, topicId) =>
+    widgetService.createWidgetForTopic()
+        .then(widget => dispatch({
+                                     type: "CREAT_WIDGET_FOR_TOPIC",
                                      widget
                                  }))
