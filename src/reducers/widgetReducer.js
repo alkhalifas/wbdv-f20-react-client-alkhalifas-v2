@@ -1,8 +1,8 @@
-import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET} from "../actions/widgetActions"
+import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET, CHANGE_EDITING} from "../actions/widgetActions"
 
 const initialState = {
     widgets: [],
-    //editing : false,
+    editing : false,
 }
 
 const widgetReducer = (state = initialState, action) => {
@@ -12,16 +12,16 @@ const widgetReducer = (state = initialState, action) => {
                 ...state,
                 widgets: action.widgets,
                 topicId: action.topicId
-            }
+            };
         case "FIND_ALL_WIDGETS":
             return {
                 ...state,
                 widgets: action.widgets
-            }
+            };
         case CREATE_WIDGET:
             return {
                 widgets: [...state.widgets, action.widget]
-            }
+            };
         case "CREAT_WIDGET_FOR_TOPIC":
             return {
                 ...state,
@@ -29,12 +29,17 @@ const widgetReducer = (state = initialState, action) => {
                     ...state.widgets,
                     action.widget
                 ]
-            }
+            };
         case UPDATE_WIDGET:
             return {
                 widgets: state.widgets.map(
                     widget => widget._id === action.widget._id ?
                               action.widget : widget)
+            };
+        case CHANGE_EDITING:
+            return {
+                ...state,
+                editing: !state.editing
             }
         case DELETE_WIDGET:
             return {

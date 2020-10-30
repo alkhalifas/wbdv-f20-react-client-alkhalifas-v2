@@ -5,7 +5,8 @@ import {
     deleteWidget,
     updateWidget,
     editWidget,
-    okWidget,} from "../../actions/widgetActions";
+    okWidget, changeEditing, createWidgetForTopic,
+} from "../../actions/widgetActions";
 import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/ParagraphWidget";
 import widgetService from "../../services/WidgetService";
@@ -15,6 +16,7 @@ const WidgetList = ({
                         widgets=[],
                         deleteWidget,
                         createWidget,
+                         changeEditing,
                         createWidgetForTopic,
                         updateWidget,
                         editWidget,
@@ -25,25 +27,54 @@ const WidgetList = ({
         {/*{this.state.widget.title}*/}
         {/*{console.log("~~~~ HERE", widgets)}*/}
         {/*{ widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}*/}
+
+        <div className="row">
+            <div className="col-9">
+
+            </div>
+            {/*<div className="col-2 custom-switch mt-3 mb-3 pull-right">*/}
+            {/*    <input className="custom-control-input align-middle" id="switchPrim"*/}
+            {/*           type="checkbox" onClick={() => togglePreview()/>*/}
+            {/*        <label className="pull-right custom-control-label inline-block"*/}
+            {/*               htmlFor="switchPrim">Preview</label>*/}
+            {/*</div>*/}
+            <div className="form-check form-check-inline">
+                <input className="form-check-input" type="radio" name="inlineRadioOptions"
+                       id="inlineRadio1" value="option1" onClick={() => changeEditing()}/>
+                    <label className="form-check-label" htmlFor="inlineRadio1">Editing</label>
+            </div>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input" type="radio" name="inlineRadioOptions"
+                       id="inlineRadio2" value="option2" onClick={() => changeEditing()}/>
+                    <label className="form-check-label" htmlFor="inlineRadio2">Preview</label>
+            </div>
+        </div>
+
+        {console.log("EDITING STATUS:", editing)}
+
         <ul>
             {
                 widgets.map(widget =>
                                 <li key={widget.id}>
                                     {
                                         widget.type === "HEADING" &&
-                                        <HeadingWidget widget={widget}/>
+                                        <HeadingWidget widget={widget}
+                                                       editing={editing}/>
                                     }
                                     {
                                         widget.type === "PARAGRAPH" &&
-                                        <ParagraphWidget widget={widget}/>
+                                        <ParagraphWidget widget={widget}
+                                                         editing={editing}/>
                                     }
                                 </li>
                 )
             }
         </ul>
+
+
         {console.log("~~~~ topicId HERE", topicId)}
         <button
-            onClick={createWidgetForTopic(topicId)}>
+            onClick={() =>createWidgetForTopic(topicId)}>
             Create
         </button>
     </div>
@@ -52,7 +83,8 @@ const WidgetList = ({
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgetReducer.widgets,
-    topicId: state.widgetReducer.topicId
+    topicId: state.widgetReducer.topicId,
+    editing: state.widgetReducer.editing
 
 })
 
@@ -62,17 +94,9 @@ const propertyToDispatchMapper = (dispatch) => ({
     updateWidget: (widget) => updateWidget(dispatch, widget),
     editWidget: (widget) => editWidget(dispatch, widget),
     okWidget: (widget) => okWidget(dispatch, widget),
-    createWidgetForTopic: (topicId) =>
-        widgetService.createWidgetForTopic(
-            topicId,
-            {
-            name: "NEW WIDGET",
-            type: "PARAGRAPH",
-            topicId : topicId,
-        }).then(widget => dispatch({
-                                       type: "CREAT_WIDGET_FOR_TOPIC",
-                                       widget
-                                   }))
+    changeEditing: () => changeEditing(dispatch),
+    createWidgetForTopic: (topicId) => createWidgetForTopic(dispatch, topicId)
+
 })
 
 
