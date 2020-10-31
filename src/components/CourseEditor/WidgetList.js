@@ -22,45 +22,45 @@ const WidgetList = ({
                         editWidget,
                         topicId,
                         okWidget}) =>
-    <div>
-        <h1>Widgets!!!</h1>
-        {/*{this.state.widget.title}*/}
-        {/*{console.log("~~~~ HERE", widgets)}*/}
-        {/*{ widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}*/}
+    <div className="container">
 
         <div className="row">
+            <h1 className="">Widgets!!!</h1>
+            {/*{this.state.widget.title}*/}
+            {/*{console.log("~~~~ HERE", widgets)}*/}
+            {/*{ widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}*/}
+
             <div className="col-8">
+                {/*<button className="btn btn-danger mr-2">Save</button>*/}
 
-            </div>
-
-            {/*<button className="btn btn-danger mr-2">Save</button>*/}
-
-            <div className="col-2 custom-switch mt-3 mb-3 pull-right">
-                <input className="custom-control-input align-middle" id="switchPrim"
-                       type="checkbox" onClick={() => changeEditing()}/>
+                <div className="custom-switch mt-3 mb-3 float-right">
+                    <input className="custom-control-input align-middle" id="switchPrim"
+                           type="checkbox" onClick={() => changeEditing()}/>
                     <label className="pull-right custom-control-label inline-block"
                            htmlFor="switchPrim">Preview</label>
+                </div>
+
+
+                {/*<div className="form-check form-check-inline">*/}
+                {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
+                {/*           id="inlineRadio1" value="option1" onClick={() => changeEditing()}/>*/}
+                {/*        <label className="form-check-label" htmlFor="inlineRadio1">Editing</label>*/}
+                {/*</div>*/}
+                {/*<div className="form-check form-check-inline">*/}
+                {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
+                {/*           id="inlineRadio2" value="option2" onClick={() => changeEditing()}/>*/}
+                {/*        <label className="form-check-label" htmlFor="inlineRadio2">Preview</label>*/}
+                {/*</div>*/}
             </div>
-
-
-            {/*<div className="form-check form-check-inline">*/}
-            {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
-            {/*           id="inlineRadio1" value="option1" onClick={() => changeEditing()}/>*/}
-            {/*        <label className="form-check-label" htmlFor="inlineRadio1">Editing</label>*/}
-            {/*</div>*/}
-            {/*<div className="form-check form-check-inline">*/}
-            {/*    <input className="form-check-input" type="radio" name="inlineRadioOptions"*/}
-            {/*           id="inlineRadio2" value="option2" onClick={() => changeEditing()}/>*/}
-            {/*        <label className="form-check-label" htmlFor="inlineRadio2">Preview</label>*/}
-            {/*</div>*/}
         </div>
+
 
         {console.log("EDITING STATUS:", editing)}
 
-        <ul className="list-unstyled">
+        <div class="list-group">
             {
                 widgets.map(widget =>
-                                <li key={widget.id}>
+                                <div key={widget.id}>
                                     {
                                         widget.type === "HEADING" &&
                                         <HeadingWidget widget={widget}
@@ -75,10 +75,10 @@ const WidgetList = ({
                                                          deleteWidget={deleteWidget}
                                                          updateWidget={updateWidget}/>
                                     }
-                                </li>
+                                </div>
                 )
             }
-        </ul>
+        </div>
 
 
         {console.log("~~~~ topicId HERE", topicId)}
