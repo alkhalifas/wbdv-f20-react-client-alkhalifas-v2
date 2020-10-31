@@ -14,9 +14,21 @@ const HeadingWidget = (
             editing &&
             <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
                 <div className="row m-2">
-                    <h3>{widget.type} Widget (Edit)</h3>
-                    <button className="btn btn-warning"><i className="fas fa-arrow-up"></i></button>
-                    <button className="btn btn-warning"><i className="fas fa-arrow-down"></i></button>
+                    <h3>{widget.type} Widget</h3>
+                    {console.log("WIDGET ORDER: ", widget.widgetOrder)}
+
+                    <button className="btn btn-warning"
+                            onClick={(event) => updateWidget({
+                                ...widget,
+                                widgetOrder: widget.widgetOrder + 1
+                                                             })}
+                    ><i className="fas fa-arrow-up"></i></button>
+                    <button className="btn btn-warning"
+                            onClick={(event) => updateWidget({
+                                                                 ...widget,
+                                                                 widgetOrder: widget.widgetOrder - 1
+                                                             })}
+                    ><i className="fas fa-arrow-down"></i></button>
                     <button className="btn btn-danger"
                             onClick={() =>deleteWidget(widget.id) }
 
@@ -54,22 +66,20 @@ const HeadingWidget = (
                     <input placeholder={widget.text} className="form-control"
                            onChange={(event) => updateWidget({
                                                                  ...widget,
-                                                                 name: event.target.value
+                                                                 text: event.target.value
                                                              })}
                                                                        />
 
                 </div>
-
             </div>
-
         }
         {
             !editing &&
             <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
                 <div className="row m-2">
-                    <h3>{widget.type} Widget (Prev)</h3>
+                    <h3>{widget.type} Widget</h3>
                 </div>
-                <h5>{widget.name}</h5>
+                <h5>{widget.text}</h5>
             </div>
         }
     </div>

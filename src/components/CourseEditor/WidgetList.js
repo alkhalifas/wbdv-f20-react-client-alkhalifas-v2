@@ -25,7 +25,7 @@ const WidgetList = ({
     <div className="container">
 
         <div className="row">
-            <h1 className="">Widgets!!!</h1>
+            <h1 className="">Widgets:</h1>
             {/*{this.state.widget.title}*/}
             {/*{console.log("~~~~ HERE", widgets)}*/}
             {/*{ widgets.push({"id":"123", "type":"HEADING", "name":"TEST"})}*/}

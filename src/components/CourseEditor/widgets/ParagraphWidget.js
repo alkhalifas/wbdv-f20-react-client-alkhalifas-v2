@@ -4,7 +4,8 @@ const ParagraphWidget = (
     {
         editing,
         widget,
-        deleteWidget
+        deleteWidget,
+        updateWidget
     }
 
 ) =>
@@ -12,23 +13,38 @@ const ParagraphWidget = (
         {/*{console.log("EDITING WIDGET: ", editing)}*/}
         {
             editing &&
-            <div className="container border  rounded m-3 p-3">
-
+            <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
                 <div className="row m-2">
-                    <h3>{widget.type} Widget (Edit)</h3>
+                    <h4>{widget.type} Widget</h4>
                     <button className="btn btn-warning"><i className="fas fa-arrow-up"></i></button>
                     <button className="btn btn-warning"><i className="fas fa-arrow-down"></i></button>
                     <button className="btn btn-danger"
-                            onClick={() => deleteWidget()}
+                            onClick={() =>deleteWidget(widget.id) }
+
                     ><i className="fas fa-window-close"></i></button>
-                    <select className="form-control col-3" >
-                        <option>Heading</option>
-                        <option>Paragraph</option>
+
+                    <select className="form-control col-3"
+                            value={widget.type}
+                            onChange={(event) => updateWidget({
+                                                                  ...widget,
+                                                                  type: event.target.value
+                                                              })}>
+                        {console.log("WIDGET TYPE BEFORE: ", widget.type)}
+                        <option value="HEADING">Heading</option>
+                        <option value="PARAGRAPH">Paragraph</option>
                     </select>
+
                 </div>
 
+                {/*{console.log("WIDGET SIZE AFTER: ", widget.size)}*/}
                 <div>
-                    <textarea className="form-control" placeholder="Paragraph Text"></textarea>
+                    <textarea placeholder={widget.text} className="form-control"
+                           onChange={(event) => updateWidget({
+                                                                 ...widget,
+                                                                 name: event.target.value
+                                                             })}
+                    />
+
                 </div>
 
             </div>
@@ -36,8 +52,10 @@ const ParagraphWidget = (
         }
         {
             !editing &&
-            <div className="container border rounded">
-                <h3>{widget.type} Widget (Prev)</h3>
+            <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
+                <div className="row m-2">
+                    <h3>{widget.type} Widget</h3>
+                </div>
                 <h5>{widget.name}</h5>
             </div>
         }
