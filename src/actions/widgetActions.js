@@ -17,12 +17,12 @@ export const okWidget = (dispatch, widget) =>
 export const updateWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget})
 
-export const deleteWidget = (dispatch, widgetId) => {
-{console.log("DELETE WIDGET ERROR", widgetId)}
-    widgetService.deleteWidget(widgetId)
+export const deleteWidget = (dispatch, widget) => {
+{console.log("DELETE WIDGET ERROR:", widget)}
+    widgetService.deleteWidget(widget)
         .then(() => dispatch({
                                  type: "DELETE_WIDGET",
-                                 widgetId
+                                 widget
                              }))
 }
 export const createWidget = (dispatch, topicId) =>

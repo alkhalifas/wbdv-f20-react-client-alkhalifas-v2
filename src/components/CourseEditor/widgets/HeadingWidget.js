@@ -17,7 +17,8 @@ const HeadingWidget = (
                     <button className="btn btn-warning"><i className="fas fa-arrow-up"></i></button>
                     <button className="btn btn-warning"><i className="fas fa-arrow-down"></i></button>
                     <button className="btn btn-danger"
-                            onClick={() =>deleteWidget(widget.id)}
+                            onClick={() =>deleteWidget(widget.id) }
+
                     ><i className="fas fa-window-close"></i></button>
 
                     <select className="form-control col-3" >
