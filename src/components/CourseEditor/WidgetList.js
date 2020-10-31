@@ -16,7 +16,7 @@ const WidgetList = ({
                         widgets=[],
                         deleteWidget,
                         createWidget,
-                         changeEditing,
+                        changeEditing,
                         createWidgetForTopic,
                         updateWidget,
                         editWidget,
@@ -33,7 +33,7 @@ const WidgetList = ({
 
             </div>
 
-            <button className="btn btn-danger mr-2">Save</button>
+            {/*<button className="btn btn-danger mr-2">Save</button>*/}
 
             <div className="col-2 custom-switch mt-3 mb-3 pull-right">
                 <input className="custom-control-input align-middle" id="switchPrim"
@@ -65,13 +65,15 @@ const WidgetList = ({
                                         widget.type === "HEADING" &&
                                         <HeadingWidget widget={widget}
                                                        editing={editing}
-                                                       deleteWidget={deleteWidget}/>
+                                                       deleteWidget={deleteWidget}
+                                                       updateWidget={updateWidget}/>
                                     }
                                     {
                                         widget.type === "PARAGRAPH" &&
                                         <ParagraphWidget widget={widget}
                                                          editing={editing}
-                                                         deleteWidget={deleteWidget}/>
+                                                         deleteWidget={deleteWidget}
+                                                         updateWidget={updateWidget}/>
                                     }
                                 </li>
                 )

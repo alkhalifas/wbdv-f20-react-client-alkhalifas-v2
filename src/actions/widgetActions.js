@@ -8,15 +8,23 @@ export const CHANGE_EDITING = "CHANGE_EDITING"
 export const changeEditing = (dispatch) =>
     dispatch({type: CHANGE_EDITING})
 
+// Not Needed
 export const editWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget: {...widget, editing: true}})
 
 export const okWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget: {...widget, editing: false}})
 
-export const updateWidget = (dispatch, widget) =>
-    dispatch({type: UPDATE_WIDGET, widget})
 
+export const updateWidget = (dispatch, widget) =>
+    widgetService.updateWidget(widget.id, widget)
+        .then(status => dispatch({
+            type: UPDATE_WIDGET,
+            widget: widget
+                                 }))
+
+
+// Working!
 export const deleteWidget = (dispatch, widget) => {
 {console.log("DELETE WIDGET ERROR:", widget)}
     widgetService.deleteWidget(widget)
@@ -25,6 +33,8 @@ export const deleteWidget = (dispatch, widget) => {
                                  widget
                              }))
 }
+
+// Working!
 export const createWidget = (dispatch, topicId) =>
     widgetService.createWidget()
         .then(widget => dispatch({
@@ -32,6 +42,7 @@ export const createWidget = (dispatch, topicId) =>
                                      widget
                                  }))
 
+// Working!
 export const createWidgetForTopic = (dispatch, topicId) =>
     widgetService.createWidgetForTopic(topicId, {
         name: "New Widget",

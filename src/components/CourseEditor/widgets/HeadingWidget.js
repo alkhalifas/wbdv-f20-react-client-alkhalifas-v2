@@ -5,7 +5,8 @@ const HeadingWidget = (
     {
         editing,
         widget,
-        deleteWidget
+        deleteWidget,
+        updateWidget
     }) =>
     <div>
         {console.log("EDITING WIDGET: ", editing)}
@@ -37,7 +38,12 @@ const HeadingWidget = (
                 <button className="btn btn-primary">Save</button>
 
                 <div>
-                    <input placeholder="Heading Text" className="form-control" />
+                    <input placeholder="Heading Text" className="form-control"
+                           onChange={(event) => updateWidget({
+                                                                 ...widget,
+                                                                 name: event.target.value
+                                                             })}
+                                                                       />
                 </div>
 
             </div>

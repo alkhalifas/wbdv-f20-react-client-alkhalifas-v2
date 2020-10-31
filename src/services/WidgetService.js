@@ -49,5 +49,5 @@ export const deleteWidget = (widgetId) =>
 
 
 export default {
-    findAllWidgets, createWidget, findWidgetsForTopic, createWidgetForTopic, deleteWidget
+    findAllWidgets, createWidget, findWidgetsForTopic, createWidgetForTopic, deleteWidget, updateWidget
 }
