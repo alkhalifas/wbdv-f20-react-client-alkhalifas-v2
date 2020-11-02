@@ -15,7 +15,7 @@ export const topicReducer = (state=initialState, action) => {
                 topics: state.topics.filter(topic => topic._id !== action.topicId)
             };
         case "FIND_TOPICS_FOR_LESSON":
-            console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 topics: action.topics,

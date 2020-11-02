@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import { orderBy } from "lodash";
 import {
     createWidget,
     deleteWidget,
@@ -10,6 +11,16 @@ import {
 import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/ParagraphWidget";
 import widgetService from "../../services/WidgetService";
+
+// function compare( a, b ) {
+//     if ( a.widgetOrder < b.widgetOrder ){
+//         return -1;
+//     }
+//     if ( a.widgetOrder > b.widgetOrder ){
+//         return 1;
+//     }
+//     return 0;
+// }
 
 const WidgetList = ({
                         editing=true,
@@ -55,9 +66,11 @@ const WidgetList = ({
         </div>
 
 
-        {console.log("EDITING STATUS:", editing)}
+        {/*{console.log("EDITING STATUS:", editing)}*/}
 
-        <div class="list-group">
+        <div className="list-group">
+            {/*{widgets.sort((a, b) => (a.widgetOrder > b.widgetOrder) ? 1 : -1)}*/}
+            {/*{this.state.widgets.sort( compare )}*/}
             {
                 widgets.map(widget =>
                                 <div key={widget.id}>
@@ -81,11 +94,18 @@ const WidgetList = ({
         </div>
 
 
-        {console.log("~~~~ topicId HERE", topicId)}
+        {/*{console.log("~~~~ topicId HERE", topicId)}*/}
+        {/*        <button*/}
+        {/*            className="fas fa-plus-circle fa-2x text-center"*/}
+        {/*            onClick={() =>createWidgetForTopic(topicId)}>*/}
+        {/*        </button>*/}
         <button
+            className="btn"
             onClick={() =>createWidgetForTopic(topicId)}>
-            Create
+            <i aria-hidden="true"
+               className="fa fa-plus-circle fa-3x "></i>
         </button>
+
     </div>
 
 // export default WidgetList

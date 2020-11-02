@@ -25,12 +25,12 @@ export const updateWidget = (dispatch, widget) =>
 
 
 // Working!
-export const deleteWidget = (dispatch, widget) => {
-{console.log("DELETE WIDGET ERROR:", widget)}
-    widgetService.deleteWidget(widget)
+export const deleteWidget = (dispatch, widgetId) => {
+// {console.log("DELETE WIDGET ERROR:", widgetId)}
+    widgetService.deleteWidget(widgetId)
         .then(() => dispatch({
                                  type: "DELETE_WIDGET",
-                                 widget
+                                 widgetId
                              }))
 }
 
@@ -49,7 +49,7 @@ export const createWidgetForTopic = (dispatch, topicId) =>
         type: "PARAGRAPH",
     })
         .then(widget => dispatch({
-                                     type: "CREAT_WIDGET_FOR_TOPIC",
+                                     type: "CREATE_WIDGET_FOR_TOPIC",
                                      widget
                                  }))
 

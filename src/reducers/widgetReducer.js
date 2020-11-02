@@ -22,7 +22,7 @@ const widgetReducer = (state = initialState, action) => {
             return {
                 widgets: [...state.widgets, action.widget]
             };
-        case "CREAT_WIDGET_FOR_TOPIC":
+        case "CREATE_WIDGET_FOR_TOPIC":
             return {
                 ...state,
                 widgets: [
@@ -43,6 +43,7 @@ const widgetReducer = (state = initialState, action) => {
                 editing: !state.editing
             }
         case DELETE_WIDGET:
+        // {console.log("DELETE WIDGET: ", state.widgets)}
             return {
                 widgets: state.widgets.filter(widget => widget !== action.widget)
             }

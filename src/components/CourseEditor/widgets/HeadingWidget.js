@@ -12,10 +12,10 @@ const HeadingWidget = (
         {/*{console.log("EDITING WIDGET: ", editing)}*/}
         {
             editing &&
-            <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
+            <div className="container border rounded m-2 p-3 shadow-sm" style={{width: widget.width, height: widget.height}}>
                 <div className="row m-2">
-                    <h3>{widget.type} Widget</h3>
-                    {console.log("WIDGET ORDER: ", widget.widgetOrder)}
+                    <h3 className="col-6">{widget.type} Widget</h3>
+                    {/*{console.log("WIDGET ORDER: ", widget.widgetOrder)}*/}
 
                     <button className="btn btn-warning"
                             onClick={(event) => updateWidget({
@@ -40,11 +40,13 @@ const HeadingWidget = (
                                                                   ...widget,
                                                                   type: event.target.value
                                                               })}>
-                        {console.log("WIDGET TYPE BEFORE: ", widget.type)}
+                        {/*{console.log("WIDGET TYPE BEFORE: ", widget.type)}*/}
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
                     </select>
-
+                    <div className="ml-3">
+                        <h6>{widget.widgetOrder}</h6>
+                    </div>
                 </div>
 
                     <select className="form-control"
@@ -75,11 +77,29 @@ const HeadingWidget = (
         }
         {
             !editing &&
-            <div className="container border rounded m-2 p-3" style={{width: widget.width, height: widget.height}}>
+            <div className="container border rounded-5 m-2 p-3 shadow-sm" style={{width: widget.width, height: 100}}>
                 <div className="row m-2">
-                    <h3>{widget.type} Widget</h3>
+                    {
+                        widget.size === "Heading 1" &&
+                        <h1>{widget.text}</h1>
+                    }
+                    {
+                        widget.size === "Heading 2" &&
+                        <h2>{widget.text}</h2>
+                    }
+                    {
+                        widget.size === "Heading 3" &&
+                        <h3>{widget.text}</h3>
+                    }
+                    {
+                        widget.size === "Heading 4" &&
+                        <h4>{widget.text}</h4>
+                    }
+                    {
+                        widget.size === "Heading 5" &&
+                        <h5>{widget.text}</h5>
+                    }
                 </div>
-                <h5>{widget.text}</h5>
             </div>
         }
     </div>
