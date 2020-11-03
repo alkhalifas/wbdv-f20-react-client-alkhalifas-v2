@@ -1,13 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import LessonService, {createLessonForModule} from "../../services/LessonService";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 const LessonsTabComponent = (
     {
         course = {},
         moduleId,
-        lessons=[],
+        lessons = [],
         lessonId,
         createLesson,
         deleteLesson,
@@ -21,13 +21,15 @@ const LessonsTabComponent = (
             {
                 lessons.map(lesson =>
                                 <li key={lesson._id}
-                                    className="nav-item" >
-                                    <a className={`nav-link ${lessonId === lesson._id?'active':''}`} >
+                                    className="nav-item">
+                                    <a className={`nav-link ${lessonId === lesson._id ? 'active'
+                                                                                      : ''}`}>
                                         {
                                             !lesson.editing &&
                                             <span>
 
-                                                <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
+                                                <Link
+                                                    to={`/edit/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
                                                     {lesson.title}
                                                 </Link>
 
@@ -49,13 +51,13 @@ const LessonsTabComponent = (
                                                                                       })}
                                                     value={lesson.title}/>
                                                 <button
-                                                        className="btn btn-light btn-sm"
-                                                        onClick={() => okLesson(lesson)}>
+                                                    className="btn btn-light btn-sm"
+                                                    onClick={() => okLesson(lesson)}>
                                                     <i className="fa fa-check"></i>
                                                 </button>
                                                 <button
-                                                        className="btn btn-light btn-sm"
-                                                        onClick={() => deleteLesson(lesson._id)}>
+                                                    className="btn btn-light btn-sm"
+                                                    onClick={() => deleteLesson(lesson._id)}>
                                                         <i className="fas fa-trash-alt"></i>
                                                 </button>
                                             </span>
@@ -91,8 +93,8 @@ const dispatchToPropertyMapper = (dispatch) => ({
         LessonService.updateLesson(lesson._id, {
             ...lesson, editing: false
         }).then(status => dispatch({
-                                    type: "UPDATE_LESSON",
-                                    lesson: {...lesson, editing: false}
+                                       type: "UPDATE_LESSON",
+                                       lesson: {...lesson, editing: false}
                                    })),
     editLesson: (lesson) =>
         LessonService.updateLesson(lesson._id, {
@@ -106,9 +108,9 @@ const dispatchToPropertyMapper = (dispatch) => ({
     updateLesson: (lesson) =>
         LessonService.updateLesson(lesson._id, lesson)
             .then(status => dispatch({
-                                              type: "UPDATE_LESSON",
-                                              lesson: lesson
-                                          })),
+                                         type: "UPDATE_LESSON",
+                                         lesson: lesson
+                                     })),
     deleteLesson: (lessonId) =>
         LessonService.deleteLesson(lessonId)
             .then(status => dispatch({

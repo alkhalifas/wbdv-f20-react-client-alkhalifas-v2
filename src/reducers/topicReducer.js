@@ -15,15 +15,15 @@ export const topicReducer = (state=initialState, action) => {
                 topics: state.topics.filter(topic => topic._id !== action.topicId)
             };
         case "FIND_TOPICS_FOR_LESSON":
-            console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 topics: action.topics,
                 lessonId: action.lessonId,
-                topicId: action.topicId
+                //topicId: action.topicId
 
             };
-        case "FIND_WIDGETS_FOR_TOPICS":
+        case "FIND_WIDGETS_FOR_TOPIC":
             return {
                 ...state,
                 topicId: action.topicId

@@ -17,7 +17,7 @@ const ModuleListComponent = (
     }) =>
     <div>
         <h1>Modules:</h1>
-        <medium>{course.title}</medium>
+        <h6>{course.title}</h6>
         <div>
             <ul className="list-group table-hover">
                 {modules.map(module =>

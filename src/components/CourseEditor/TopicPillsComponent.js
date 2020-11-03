@@ -25,7 +25,6 @@ const TopicPillsComponent = (
         <h1>Topics:</h1>
         {/*<h6>Course._id ({course._id})</h6>*/}
         {/*<h6>ModuleId ({moduleId})</h6>*/}
-        {/*<h6>LessonId ({lessonId})</h6>*/}
         <h6>topicId ({topicId})</h6>
 
         <ul className="nav nav-pills ">
@@ -106,7 +105,6 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
-
     okTopic: (topic) =>
         TopicService.updateTopic(topic._id, {
             ...topic, editing: false
@@ -129,6 +127,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
                                          type: "UPDATE_TOPIC",
                                          topic: topic
                                      })),
+
     deleteTopic: (topicId) =>
     {
 
