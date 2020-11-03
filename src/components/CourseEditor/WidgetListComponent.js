@@ -8,8 +8,8 @@ import {
     editWidget,
     okWidget, changeEditing, createWidgetForTopic,
 } from "../../actions/widgetActions";
-import HeadingWidget from "./widgets/HeadingWidget";
-import ParagraphWidget from "./widgets/ParagraphWidget";
+import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
+import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 import widgetService from "../../services/WidgetService";
 
 // function compare( a, b ) {
@@ -22,7 +22,7 @@ import widgetService from "../../services/WidgetService";
 //     return 0;
 // }
 
-const WidgetList = ({
+const WidgetListComponent = ({
                         editing=true,
                         widgets=[],
                         deleteWidget,
@@ -76,17 +76,17 @@ const WidgetList = ({
                                 <div key={widget.id}>
                                     {
                                         widget.type === "HEADING" &&
-                                        <HeadingWidget widget={widget}
-                                                       editing={editing}
-                                                       deleteWidget={deleteWidget}
-                                                       updateWidget={updateWidget}/>
+                                        <HeadingWidgetComponent widget={widget}
+                                                                editing={editing}
+                                                                deleteWidget={deleteWidget}
+                                                                updateWidget={updateWidget}/>
                                     }
                                     {
                                         widget.type === "PARAGRAPH" &&
-                                        <ParagraphWidget widget={widget}
-                                                         editing={editing}
-                                                         deleteWidget={deleteWidget}
-                                                         updateWidget={updateWidget}/>
+                                        <ParagraphWidgetComponent widget={widget}
+                                                                  editing={editing}
+                                                                  deleteWidget={deleteWidget}
+                                                                  updateWidget={updateWidget}/>
                                     }
                                 </div>
                 )
@@ -108,7 +108,7 @@ const WidgetList = ({
 
     </div>
 
-// export default WidgetList
+// export default WidgetListComponent
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgetReducer.widgets,
@@ -132,4 +132,4 @@ const propertyToDispatchMapper = (dispatch) => ({
 export default connect
 ( stateToPropertyMapper,
   propertyToDispatchMapper)
-(WidgetList)
+(WidgetListComponent)

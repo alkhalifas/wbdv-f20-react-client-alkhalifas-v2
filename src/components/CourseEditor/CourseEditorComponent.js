@@ -1,6 +1,6 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
-import WidgetList from "./WidgetList";
+import WidgetList from "./WidgetListComponent";
 import ModuleListComponent from "./ModuleListComponent";
 import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"

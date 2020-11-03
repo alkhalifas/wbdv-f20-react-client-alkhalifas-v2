@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import Hello from "../components/Hello.js"
+import HelloComponent from "../components/HelloComponent.js"
 
 const stateMapper = state =>  ({
     message: state.communications.msg
 });
 
-export default connect(stateMapper)(Hello)
+export default connect(stateMapper)(HelloComponent)
 // Connect wants two arguments: the state and the component

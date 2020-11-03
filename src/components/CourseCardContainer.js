@@ -1,7 +1,7 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
 import {Link} from "react-router-dom";
-import "./CourseCard.css"
+import "./CourseCardContainer.css"
 
 //Change to class to maintain state
 class CourseCardContainer extends React.Component {

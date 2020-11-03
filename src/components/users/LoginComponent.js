@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login = () =>
+const LoginComponent = () =>
     <div>
         <div className="container">
 
@@ -59,4 +59,4 @@ const Login = () =>
 
     </div>
 
-export default Login
+export default LoginComponent

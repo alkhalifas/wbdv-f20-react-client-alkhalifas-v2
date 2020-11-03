@@ -1,6 +1,6 @@
 import React from "react";
 
-const ParagraphWidget = (
+const ParagraphWidgetComponent = (
     {
         editing,
         widget,
@@ -73,4 +73,4 @@ const ParagraphWidget = (
 
 
 
-export default ParagraphWidget
+export default ParagraphWidgetComponent

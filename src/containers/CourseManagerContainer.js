@@ -1,13 +1,12 @@
 import React from "react";
 import {BrowserRouter, Route, Link} from "react-router-dom";
-import Login from "../components/Login";
-import Register from "../components/Register";
-import Profile from "../components/Profile";
+import LoginComponent from "../components/users/LoginComponent";
+import RegisterComponent from "../components/users/RegisterComponent";
+import ProfileComponent from "../components/users/ProfileComponent";
 import CourseListComponent from "../components/CourseListComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
-import CourseGrid from "../components/CourseGrid";
 import CourseGridComponent from "../components/CourseGridComponent";
-import HomeComponent from "../components/HomeComponent";
+import HomeComponent from "../components/users/HomeComponent";
 
 export class CourseManagerContainer extends React.Component {
     state = {
@@ -42,16 +41,16 @@ export class CourseManagerContainer extends React.Component {
                         <h1>" "</h1>
 
                     </div>
-                    {/*<Link to="/login">Login</Link> |*/}
-                    {/*<Link to="/register">Register</Link> |*/}
-                    {/*<Link to="/profile">Profile</Link> |*/}
+                    {/*<Link to="/login">LoginComponent</Link> |*/}
+                    {/*<Link to="/register">RegisterComponent</Link> |*/}
+                    {/*<Link to="/profile">ProfileComponent</Link> |*/}
                     {/*<Link to="/table">Courses</Link> |*/}
                     {/*<Link to="/grid">Grid</Link> |*/}
                     {/*<Link to="/edit">Editor</Link>*/}
                     <Route path="/" exact component={HomeComponent}/>
-                    <Route path="/login" exact component={Login}/>
-                    <Route path="/register" exact component={Register}/>
-                    <Route path="/profile" exact component={Profile}/>
+                    <Route path="/login" exact component={LoginComponent}/>
+                    <Route path="/register" exact component={RegisterComponent}/>
+                    <Route path="/profile" exact component={ProfileComponent}/>
                     <Route path="/table" exact>
                         <CourseListComponent courses={this.state.courses} instructor="Saleh Alkhalifa"/>
                     </Route>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Register = () =>
+const RegisterComponent = () =>
     <div>
         <div className="container">
 
@@ -63,4 +63,4 @@ const Register = () =>
 
     </div>
 
-export default Register
+export default RegisterComponent

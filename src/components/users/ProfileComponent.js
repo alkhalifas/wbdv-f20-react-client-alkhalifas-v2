@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profile = () =>
+const ProfileComponent = () =>
     <div>
 
         <div className="container">
@@ -99,4 +99,4 @@ const Profile = () =>
 
     </div>
 
-export default Profile
+export default ProfileComponent

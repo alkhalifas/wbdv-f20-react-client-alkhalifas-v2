@@ -1,7 +1,7 @@
 import React from "react";
-import "./widget.css"
+import "./WidgetComponent.css"
 
-const HeadingWidget = (
+const HeadingWidgetComponent = (
     {
         editing,
         widget,
@@ -104,4 +104,4 @@ const HeadingWidget = (
         }
     </div>
 
-export default HeadingWidget
+export default HeadingWidgetComponent
