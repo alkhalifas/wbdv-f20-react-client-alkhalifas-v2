@@ -6,7 +6,9 @@ const HeadingWidgetComponent = (
         editing,
         widget,
         deleteWidget,
-        updateWidget
+        updateWidget,
+        topicId,
+        findWidgetsForTopic
     }) =>
     <div>
         {/*{console.log("EDITING WIDGET: ", editing)}*/}
@@ -30,7 +32,7 @@ const HeadingWidgetComponent = (
                                                              })}
                     ><i className="fas fa-arrow-down"></i></button>
                     <button className="btn btn-danger"
-                            onClick={() =>deleteWidget(widget.id) }
+                            onClick={() =>deleteWidget(widget.id)}
 
                     ><i className="fas fa-window-close"></i></button>
 

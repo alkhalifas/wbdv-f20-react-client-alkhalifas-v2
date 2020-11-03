@@ -32,6 +32,7 @@ export const deleteWidget = (dispatch, widgetId) => {
                                  type: "DELETE_WIDGET",
                                  widgetId
                              }))
+
 }
 
 // Working!

@@ -29,6 +29,7 @@ const WidgetListComponent = ({
                         createWidget,
                         changeEditing,
                         createWidgetForTopic,
+                        // findWidgetsForTopic,
                         updateWidget,
                         editWidget,
                         topicId,
@@ -70,7 +71,11 @@ const WidgetListComponent = ({
 
         <div className="list-group">
             {/*{widgets.sort((a, b) => (a.widgetOrder > b.widgetOrder) ? 1 : -1)}*/}
+            {console.log(widgets.sort())}
             {/*{this.state.widgets.sort( compare )}*/}
+
+            {/*// filter returns new array*/}
+            {/*// sort order.widgetOrder*/}
             {
                 widgets.map(widget =>
                                 <div key={widget.id}>
@@ -79,7 +84,8 @@ const WidgetListComponent = ({
                                         <HeadingWidgetComponent widget={widget}
                                                                 editing={editing}
                                                                 deleteWidget={deleteWidget}
-                                                                updateWidget={updateWidget}/>
+                                                                updateWidget={updateWidget}
+                                                                />
                                     }
                                     {
                                         widget.type === "PARAGRAPH" &&
@@ -124,7 +130,8 @@ const propertyToDispatchMapper = (dispatch) => ({
     editWidget: (widget) => editWidget(dispatch, widget),
     okWidget: (widget) => okWidget(dispatch, widget),
     changeEditing: () => changeEditing(dispatch),
-    createWidgetForTopic: (topicId) => createWidgetForTopic(dispatch, topicId)
+    createWidgetForTopic: (topicId) => createWidgetForTopic(dispatch, topicId),
+    // findWidgetsForTopic: (topicId) => findWidgetsForTopic(topicId)
 
 })
 

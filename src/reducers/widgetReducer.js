@@ -43,10 +43,13 @@ const widgetReducer = (state = initialState, action) => {
                 editing: !state.editing
             }
         case DELETE_WIDGET:
-        // {console.log("DELETE WIDGET: ", state.widgets)}
+        // {console.log("DELETE WIDGET ERROR: ", state.widgets.filter(widget => widget !== action.widget))}
+        {console.log("DELETE WIDGET ERROR: ", action)}
+
             return {
-                widgets: state.widgets.filter(widget => widget !== action.widget)
+                widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
             }
+
         default:
             return state
     }
