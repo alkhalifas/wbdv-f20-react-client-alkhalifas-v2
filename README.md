@@ -25,4 +25,3 @@
 
 ![](./src/media/react_widgets_gif.gif)
 
-Heroku Link: https://intense-scrubland-91835.herokuapp.com/
