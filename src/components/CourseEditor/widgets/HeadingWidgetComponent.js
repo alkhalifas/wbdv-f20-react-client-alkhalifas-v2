@@ -45,6 +45,8 @@ const HeadingWidgetComponent = (
                         {/*{console.log("WIDGET TYPE BEFORE: ", widget.type)}*/}
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
+                        <option value="LIST">List</option>
+
                     </select>
                     <div className="ml-3">
                         <h6>{widget.widgetOrder}</h6>

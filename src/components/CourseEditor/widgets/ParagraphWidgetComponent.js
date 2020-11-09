@@ -17,8 +17,18 @@ const ParagraphWidgetComponent = (
                 <div className="row m-2">
                     <h3 className="col-6">{widget.type} Widget</h3>
 
-                    <button className="btn btn-warning"><i className="fas fa-arrow-up"></i></button>
-                    <button className="btn btn-warning"><i className="fas fa-arrow-down"></i></button>
+                    <button className="btn btn-warning"
+                            onClick={(event) => updateWidget({
+                                                                 ...widget,
+                                                                 widgetOrder: widget.widgetOrder + 1
+                                                             })}
+                    ><i className="fas fa-arrow-up"></i></button>
+                    <button className="btn btn-warning"
+                            onClick={(event) => updateWidget({
+                                                                 ...widget,
+                                                                 widgetOrder: widget.widgetOrder - 1
+                                                             })}
+                    ><i className="fas fa-arrow-down"></i></button>
                     <button className="btn btn-danger"
                             onClick={() =>deleteWidget(widget.id)}>
                         <i className="fas fa-window-close"></i>
@@ -33,6 +43,8 @@ const ParagraphWidgetComponent = (
                         {/*{console.log("WIDGET TYPE BEFORE: ", widget.type)}*/}
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
+                        <option value="LIST">List</option>
+
                     </select>
                     <div className="ml-3">
                         <h6>{widget.widgetOrder}</h6>

@@ -1,5 +1,5 @@
-const WIDGET_URL = "https://sheltered-headland-55217.herokuapp.com/api/widgets"
-const TOPIC_URL  = "https://sheltered-headland-55217.herokuapp.com/api/topics"
+const WIDGET_URL = "https://cs5610-server-java-alkhalifas.herokuapp.com/api/widgets"
+const TOPIC_URL  = "https://cs5610-server-java-alkhalifas.herokuapp.com/api/topics"
 
 const findAllWidgets = () =>
     fetch(WIDGET_URL)

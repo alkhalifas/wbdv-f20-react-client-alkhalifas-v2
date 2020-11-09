@@ -11,6 +11,7 @@ import {
 import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 import widgetService from "../../services/WidgetService";
+import ListWidgetComponent from "./widgets/ListWidgetComponent";
 
 // function compare( a, b ) {
 //     if ( a.widgetOrder < b.widgetOrder ){
@@ -71,7 +72,7 @@ const WidgetListComponent = ({
 
         <div className="list-group">
             {/*{widgets.sort((a, b) => (a.widgetOrder > b.widgetOrder) ? 1 : -1)}*/}
-            {console.log(widgets.sort())}
+            {/*{console.log(widgets.sort())}*/}
             {/*{this.state.widgets.sort( compare )}*/}
 
             {/*// filter returns new array*/}
@@ -90,6 +91,13 @@ const WidgetListComponent = ({
                                     {
                                         widget.type === "PARAGRAPH" &&
                                         <ParagraphWidgetComponent widget={widget}
+                                                                  editing={editing}
+                                                                  deleteWidget={deleteWidget}
+                                                                  updateWidget={updateWidget}/>
+                                    }
+                                    {
+                                        widget.type === "LIST" &&
+                                        <ListWidgetComponent widget={widget}
                                                                   editing={editing}
                                                                   deleteWidget={deleteWidget}
                                                                   updateWidget={updateWidget}/>
