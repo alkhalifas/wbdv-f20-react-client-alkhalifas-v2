@@ -47,6 +47,8 @@ const ListWidgetComponent = (
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
                         <option value="LIST">List</option>
+                        <option value="IMAGE">Image</option>
+
                     </select>
                     <div className="ml-3">
                         <h6>{widget.widgetOrder}</h6>

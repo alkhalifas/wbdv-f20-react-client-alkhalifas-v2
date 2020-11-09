@@ -1,3 +1,9 @@
 selectBoxSize {
     width:100px;
 }
+
+
+imageAspectRatio {
+    max-width:80%;
+    max-height:80%;
+}

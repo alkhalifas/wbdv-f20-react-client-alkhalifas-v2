@@ -12,6 +12,7 @@ import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 import widgetService from "../../services/WidgetService";
 import ListWidgetComponent from "./widgets/ListWidgetComponent";
+import ImageWidgetComponent from "./widgets/ImageWidgetComponent";
 
 // function compare( a, b ) {
 //     if ( a.widgetOrder < b.widgetOrder ){
@@ -101,6 +102,13 @@ const WidgetListComponent = ({
                                                                   editing={editing}
                                                                   deleteWidget={deleteWidget}
                                                                   updateWidget={updateWidget}/>
+                                    }
+                                    {
+                                        widget.type === "IMAGE" &&
+                                        <ImageWidgetComponent widget={widget}
+                                                             editing={editing}
+                                                             deleteWidget={deleteWidget}
+                                                             updateWidget={updateWidget}/>
                                     }
                                 </div>
                 )

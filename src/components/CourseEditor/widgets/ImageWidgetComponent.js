@@ -1,14 +1,15 @@
 import React from "react";
 import "./WidgetComponent.css"
 
-const HeadingWidgetComponent = (
+const ImageWidgetComponent = (
     {
         editing,
         widget,
         deleteWidget,
         updateWidget,
         topicId,
-        findWidgetsForTopic
+        findWidgetsForTopic,
+        listOfItems = widget.text.split(/\n/)
     }) =>
     <div>
         {/*{console.log("EDITING WIDGET: ", editing)}*/}
@@ -21,8 +22,8 @@ const HeadingWidgetComponent = (
 
                     <button className="btn btn-warning"
                             onClick={(event) => updateWidget({
-                                ...widget,
-                                widgetOrder: widget.widgetOrder + 1
+                                                                 ...widget,
+                                                                 widgetOrder: widget.widgetOrder + 1
                                                              })}
                     ><i className="fas fa-arrow-up"></i></button>
                     <button className="btn btn-warning"
@@ -54,59 +55,28 @@ const HeadingWidgetComponent = (
                     </div>
                 </div>
 
-                    <select className="form-control"
-                            value={widget.size}
-                            onChange={(event) => updateWidget({
-                                                                  ...widget,
-                                                                  size: event.target.value
-                                                              })}
-                            >
-                        {/*{console.log("WIDGET SIZE BEFORE: ", widget.size)}*/}
-                        <option value="Heading 1">Heading 1</option>
-                        <option value="Heading 2">Heading 2</option>
-                        <option value="Heading 3">Heading 3</option>
-                        <option value="Heading 4">Heading 4</option>
-                        <option value="Heading 5">Heading 5</option>
-                    </select>
                 {/*{console.log("WIDGET SIZE AFTER: ", widget.size)}*/}
                 <div>
-                    <input placeholder={widget.text} className="form-control"
+                    <input placeholder={widget.url} className="form-control"
                            onChange={(event) => updateWidget({
                                                                  ...widget,
-                                                                 text: event.target.value
+                                                                 url: event.target.value
                                                              })}
-                                                                       />
+                    />
 
                 </div>
             </div>
         }
         {
             !editing &&
-            <div className="container border rounded-5 m-2 p-3 shadow-sm" style={{width: widget.width, height: 100}}>
+            <div className="container border rounded-5 m-2 p-3 shadow-sm" style={{width: widget.width, height: 400}}>
                 <div className="row m-2">
-                    {
-                        widget.size === "Heading 1" &&
-                        <h1>{widget.text}</h1>
-                    }
-                    {
-                        widget.size === "Heading 2" &&
-                        <h2>{widget.text}</h2>
-                    }
-                    {
-                        widget.size === "Heading 3" &&
-                        <h3>{widget.text}</h3>
-                    }
-                    {
-                        widget.size === "Heading 4" &&
-                        <h4>{widget.text}</h4>
-                    }
-                    {
-                        widget.size === "Heading 5" &&
-                        <h5>{widget.text}</h5>
-                    }
+                    <img
+                        className="imageAspectRatio text-center img-fluid"
+                        src={widget.url}/>
                 </div>
             </div>
         }
     </div>
 
-export default HeadingWidgetComponent
+export default ImageWidgetComponent
