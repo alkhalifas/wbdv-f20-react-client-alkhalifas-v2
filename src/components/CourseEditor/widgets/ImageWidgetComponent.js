@@ -57,7 +57,8 @@ const ImageWidgetComponent = (
 
                 {/*{console.log("WIDGET SIZE AFTER: ", widget.size)}*/}
                 <div>
-                    <input placeholder={widget.url} className="form-control"
+                    <input placeholder={widget.url}
+                           className="form-control"
                            onChange={(event) => updateWidget({
                                                                  ...widget,
                                                                  url: event.target.value

@@ -68,12 +68,12 @@ const HeadingWidgetComponent = (
                         <option value="Heading 4">Heading 4</option>
                         <option value="Heading 5">Heading 5</option>
                     </select>
-                {/*{console.log("WIDGET SIZE AFTER: ", widget.size)}*/}
+                {/*{console.log("WIDGET SIZE AFTER: ", widget.text)}*/}
                 <div>
-                    <input placeholder={widget.text} className="form-control"
+                    <input placeholder={widget.name} className="form-control"
                            onChange={(event) => updateWidget({
                                                                  ...widget,
-                                                                 text: event.target.value
+                                                                 name: event.target.value
                                                              })}
                                                                        />
 
@@ -86,23 +86,23 @@ const HeadingWidgetComponent = (
                 <div className="row m-2">
                     {
                         widget.size === "Heading 1" &&
-                        <h1>{widget.text}</h1>
+                        <h1>{widget.name}</h1>
                     }
                     {
                         widget.size === "Heading 2" &&
-                        <h2>{widget.text}</h2>
+                        <h2>{widget.name}</h2>
                     }
                     {
                         widget.size === "Heading 3" &&
-                        <h3>{widget.text}</h3>
+                        <h3>{widget.name}</h3>
                     }
                     {
                         widget.size === "Heading 4" &&
-                        <h4>{widget.text}</h4>
+                        <h4>{widget.name}</h4>
                     }
                     {
                         widget.size === "Heading 5" &&
-                        <h5>{widget.text}</h5>
+                        <h5>{widget.name}</h5>
                     }
                 </div>
             </div>

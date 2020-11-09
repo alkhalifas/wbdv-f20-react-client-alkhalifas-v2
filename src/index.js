@@ -9,7 +9,6 @@ import CourseEditorComponent from "./components/CourseEditor/CourseEditorCompone
 import {CourseManagerContainer} from "./containers/CourseManagerContainer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
-import fsm from "./reducers/fsm"
 import widgetReducer from "./reducers/widgetReducer";
 import moduleReducer from "./reducers/moduleReducer";
 import courseReducer from "./reducers/courseReducer";
@@ -18,7 +17,7 @@ import {topicReducer} from "./reducers/topicReducer";
 // import "font-awesome/css/font-awesome.min.css";
 
 const reducers = combineReducers({
-                                     fsm, widgetReducer, moduleReducer, courseReducer, lessonReducer, topicReducer
+                                     widgetReducer, moduleReducer, courseReducer, lessonReducer, topicReducer
                                  })
 const store = createStore(reducers)
 

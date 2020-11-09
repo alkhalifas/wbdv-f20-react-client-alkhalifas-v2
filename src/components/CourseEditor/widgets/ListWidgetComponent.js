@@ -116,7 +116,8 @@ const ListWidgetComponent = (
                     <ul>
                         {
                             listOfItems.map(item =>
-                                                <li>{item}</li>)
+                                                <li
+                                                key="item">{item}</li>)
                         }
                     </ul>
                 </div>

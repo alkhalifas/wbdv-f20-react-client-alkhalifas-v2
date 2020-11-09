@@ -48,6 +48,7 @@ export const createWidgetForTopic = (dispatch, topicId) =>
     widgetService.createWidgetForTopic(topicId, {
         name: "New Widget",
         type: "PARAGRAPH",
+        text: "text",
     })
         .then(widget => dispatch({
                                      type: "CREATE_WIDGET_FOR_TOPIC",
