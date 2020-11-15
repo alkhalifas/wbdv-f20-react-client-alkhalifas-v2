@@ -15,13 +15,17 @@
 
 #### Assignment 5: RESTful Web Services
 - Continued to develop React and Redux framework to incorporate widgets as new elements.
-- Implemented an [external API](https://sheltered-headland-55217.herokuapp.com/api/widgets) to query Widget data from.
+- Implemented an [external API](https://cs5610-server-java-alkhalifas.herokuapp.com/api/widgets) to query Widget data from.
 - Widgets can be **Created, Deleted, Edited, and Re-Ordered**.
 
+#### Assignment 6: MySQL Database Implementation
+- Connected the Java server to an online MySQL database to store data.
+- Implemented an [external API](https://cs5610-server-java-alkhalifas.herokuapp.com/api/widgets) to query Widget data from.
+- Two new widgets were added: ImageWidget, and ListWidget (Ordered and Unordered)
 
 ## Preview of Current Application:
 
-### [Link to Deployed Application](https://gentle-bastion-15521.herokuapp.com/)
+### [Link to Deployed Application](https://cs5610-client-react-alkhalifas.herokuapp.com/)
 
-![](./src/media/react_widgets_gif.gif)
+![](./src/media/Assignment%206%20GIF.gif)
 
